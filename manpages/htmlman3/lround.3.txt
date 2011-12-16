@@ -1,0 +1,169 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+lround, lroundf, lroundl, llround, llroundf, llroundl
+      — round to nearest integer, away from zero
+
+Synopsis
+
+#include <math.h>
+
+long int
+            lround(
+double x);
+
+           
+        
+
+long int
+            lroundf(
+float x);
+
+           
+        
+
+long int
+            lroundl(
+long double x);
+
+           
+        
+
+long long int
+            llround(
+double x);
+
+           
+        
+
+long long int
+            llroundf(
+float x);
+
+           
+        
+
+long long int
+            llroundl(
+long double x);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+All functions shown above:
+
+_XOPEN_SOURCE
+                      >= 600 || _ISOC99_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L;
+
+or
+                      cc
+-std=c99
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+These functions round their argument to the nearest
+      integer value, rounding away from zero, regardless of the
+      current rounding direction (see fenv(3)).
+Note that unlike round(3), ceil(3), etc., the return
+      type of these functions differs from that of their
+      arguments.
+
+ 
+RETURN VALUE
+These functions return the rounded integer value.
+If x is a NaN or
+      an infinity, or the rounded value is too large to be stored
+      in a long (long
+      long in the case of the ll* functions) then a domain error occurs,
+      and the return value is unspecified.
+
+ 
+ERRORS
+See math_error(7) for
+      information on how to determine whether an error has occurred
+      when calling these functions.
+The following errors can occur:
+
+Domain error: x is a NaN or infinite, or
+          the rounded value is too large
+
+An invalid floating-point exception (FE_INVALID) is raised.
+
+These functions do not set errno.
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99, POSIX.1-2001.
+
+ 
+SEE ALSO
+ceil(3), floor(3), lrint(3), nearbyint(3), rint(3), round(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2001 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>.
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

@@ -1,0 +1,317 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+statvfs, fstatvfs — get file system statistics
+
+Synopsis
+
+#include <sys/statvfs.h>
+
+int
+            statvfs(
+const char *path,
+
+ 
+struct statvfs *buf);
+
+           
+        
+
+int
+            fstatvfs(
+int fd,
+
+ 
+struct statvfs *buf);
+
+           
+        
+
+ 
+DESCRIPTION
+The function statvfs()
+      returns information about a mounted file system. path is the pathname of any
+      file within the mounted file system. buf is a pointer to a
+      statvfs structure defined
+      approximately as follows:
+
+                  struct
+statvfs {
+
+ 
+unsigned long
+
+                   
+f_bsize;
+
+                      
+                      /* file system block size */
+                    
+
+ 
+unsigned long
+
+                   
+f_frsize;
+
+                      /* fragment size */
+                    
+
+ 
+fsblkcnt_t
+
+                   
+f_blocks;
+
+                      
+                      /* size of fs in f_frsize units */
+                    
+
+ 
+fsblkcnt_t
+
+                   
+f_bfree;
+
+                      
+                      /* # free blocks */
+                    
+
+ 
+fsblkcnt_t
+
+                   
+f_bavail;
+
+                      
+                      /* # free blocks for unprivileged users */
+                    
+
+ 
+fsfilcnt_t
+
+                   
+f_files;
+
+                      /* # inodes */
+                    
+
+ 
+fsfilcnt_t
+
+                   
+f_ffree;
+
+                      
+                      /* # free inodes */
+                    
+
+ 
+fsfilcnt_t
+
+                   
+f_favail;
+
+                      
+                      /* # free inodes for unprivileged users */
+                    
+
+ 
+unsigned long
+
+                   
+f_fsid;
+
+                      
+                      /* file system ID */
+                    
+
+ 
+unsigned long
+
+                   
+f_flag;
+
+                      /* mount flags */
+                    
+
+ 
+unsigned long
+
+                   
+f_namemax;
+
+                      
+                      /* maximum filename length */
+                    
+
+};
+
+Here the types fsblkcnt_t and
+      fsfilcnt_t are defined in
+      <sys/types.h> Both used to be unsigned long.
+The field f_flag
+      is a bit mask (of mount flags, see mount(8)). Bits defined by
+      POSIX are
+
+ST_RDONLY
+
+Read-only file system.
+
+ST_NOSUID
+
+Set-user-ID/set-group-ID bits are ignored by
+            exec(3).
+
+It is unspecified whether all members of the returned
+      struct have meaningful values on all file systems.
+fstatvfs() returns the same
+      information about an open file referenced by descriptor
+      fd.
+
+ 
+RETURN VALUE
+On success, zero is returned. On error, −1 is
+      returned, and errno is set
+      appropriately.
+
+ 
+ERRORS
+
+EACCES
+
+(statvfs()) Search
+            permission is denied for a component of the path prefix
+            of path. (See
+            also path_resolution(7).)
+
+EBADF
+
+(fstatvfs())
+            fd is not a
+            valid open file descriptor.
+
+EFAULT
+
+Buf or
+            path points to
+            an invalid address.
+
+EINTR
+
+This call was interrupted by a signal.
+
+EIO
+
+An I/O error occurred while reading from the file
+            system.
+
+ELOOP
+
+(statvfs()) Too many
+            symbolic links were encountered in translating
+            path.
+
+ENAMETOOLONG
+
+(statvfs()) path is too long.
+
+ENOENT
+
+(statvfs()) The file
+            referred to by path does not exist.
+
+ENOMEM
+
+Insufficient kernel memory was available.
+
+ENOSYS
+
+The file system does not support this call.
+
+ENOTDIR
+
+(statvfs()) A
+            component of the path prefix of path is not a
+            directory.
+
+EOVERFLOW
+
+Some values were too large to be represented in the
+            returned struct.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+The Linux kernel has system calls statfs(2) and fstatfs(2) to support this
+      library call.
+The current glibc implementations of
+
+   pathconf(path, _PC_REC_XFER_ALIGN);
+   pathconf(path, _PC_ALLOC_SIZE_MIN);
+   pathconf(path, _PC_REC_MIN_XFER_SIZE);
+
+respectively use the f_frsize, f_frsize, and f_bsize fields of the return
+      value of statvfs(path,buf).
+
+ 
+SEE ALSO
+statfs(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2003 Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  The pathconf note is from Walter Harms
+
+                  This is not a system call on Linux
+
+                  Modified 2004-06-23 by Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+

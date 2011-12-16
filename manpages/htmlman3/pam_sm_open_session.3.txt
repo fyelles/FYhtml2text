@@ -1,0 +1,75 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+ 
+Name
+pam_sm_open_session — PAM service function to start
+      session management
+
+Synopsis
+
+ 
+
+#define PAM_SM_SESSION
+
+#include <security/pam_modules.h>
+
+PAM_EXTERN int
+            pam_sm_open_session(
+pam_handle_t *pamh,
+
+ 
+int flags,
+
+ 
+int argc,
+
+ 
+const char **argv);
+
+           
+        
+
+ 
+DESCRIPTION
+The pam_sm_open_session
+      function is the service module's implementation of the
+      pam_open_session(3)
+      interface.
+This function is called to commence a session. The only
+      valid value for flags is zero
+      or:
+
+PAM_SILENT
+
+Do not emit any messages.
+
+ 
+RETURN VALUES
+
+PAM_SESSION_ERR
+
+Cannot make/remove an entry for the specified
+            session.
+
+PAM_SUCCESS
+
+The session was successfully started.
+
+ 
+SEE ALSO
+pam(3), pam_open_session(3),
+      pam_sm_close_session(3),
+      pam_strerror(3),
+      PAM(8)
+
+                  See Linux-PAM copyright notice for more information.
+                
+

@@ -1,0 +1,130 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+sigpending — examine pending signals
+
+Synopsis
+
+#include <signal.h>
+
+int
+            sigpending(
+sigset_t *set);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+sigpending():
+
+_POSIX_C_SOURCE
+                      >= 1 || _XOPEN_SOURCE ||
+                      _POSIX_SOURCE
+
+ 
+DESCRIPTION
+sigpending() returns the set
+      of signals that are pending for delivery to the calling
+      thread (i.e., the signals which have been raised while
+      blocked). The mask of pending signals is returned in
+      set.
+
+ 
+RETURN VALUE
+sigpending() returns 0 on
+      success and −1 on error.
+
+ 
+ERRORS
+
+EFAULT
+
+set points
+            to memory which is not a valid part of the process
+            address space.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+See sigsetops(3) for details on
+      manipulating signal sets.
+The set of signals that is pending for a thread is the
+      union of the set of signals that is pending for that thread
+      and the set of signals that is pending for the process as a
+      whole; see signal(7).
+A child created via fork(2) initially has an
+      empty pending signal set; the pending signal set is preserved
+      across an execve(2).
+
+ 
+BUGS
+In versions of glibc up to and including 2.2.1, there is a
+      bug in the wrapper function for sigpending() which means that information
+      about pending real-time signals is not correctly
+      returned.
+
+ 
+SEE ALSO
+kill(2), sigaction(2), signal(2), sigprocmask(2), sigsuspend(2), sigsetops(3), signal(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2005 Michael Kerrisk
+
+                  based on earlier work by faithdocument.write('@');(@)cs.unc.edu and
+
+                  Mike Battersby <mibdocument.write('@');(@)deakin.edu.au>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  2005-09-15, mtk, Created new page by splitting off from sigaction.2
+

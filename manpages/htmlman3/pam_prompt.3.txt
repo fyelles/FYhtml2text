@@ -1,0 +1,99 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+ 
+Name
+pam_prompt, pam_vprompt — interface to conversation
+      function
+
+ 
+Synopsis
+
+#include <security/pam_ext.h>
+
+void
+            pam_prompt(
+pam_handle_t *pamh,
+
+ 
+int style,
+
+ 
+char **response,
+
+ 
+const char *fmt,
+
+ 
+...);
+
+           
+        
+
+void
+            pam_vprompt(
+pam_handle_t *pamh,
+
+ 
+int style,
+
+ 
+char **response,
+
+ 
+const char *fmt,
+
+ 
+va_list args);
+
+           
+        
+
+ 
+DESCRIPTION
+The pam_prompt function
+      constructs a message from the specified format string and
+      arguments and passes it to the conversation function as set
+      by the service. Upon successful return, response is set to point to a
+      string returned from the conversation function. This string
+      is allocated on heap and should be freed.
+
+ 
+RETURN VALUES
+
+PAM_BUF_ERR
+
+Memory buffer error.
+
+PAM_CONV_ERR
+
+Conversation failure.
+
+PAM_SUCCESS
+
+Transaction was successful created.
+
+PAM_SYSTEM_ERR
+
+System error.
+
+ 
+SEE ALSO
+pam(8), pam_conv(3)
+
+ 
+STANDARDS
+The pam_prompt and
+      pam_vprompt functions are
+      Linux-PAM extensions.
+
+                  See Linux-PAM copyright notice for more information.
+                
+

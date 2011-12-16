@@ -1,0 +1,43 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+PCRE — Perl-compatible regular expressions
+
+Synopsis
+
+#include <pcre.h>
+
+int
+            pcre_info(
+const pcre *code,
+
+ 
+int *optptr,
+
+ 
+int *firstcharptr);
+
+           
+        
+
+ 
+DESCRIPTION
+This function is obsolete. You should be using
+      pcre_fullinfo() instead.
+There is a complete description of the PCRE native API in
+      the pcreapi(3) page and a
+      description of the POSIX API in the pcreposix(3) page.
+
+COPYRIGHT
+
+This manual page is taken from the PCRE library, which is distributed under
+                the BSD license.
+

@@ -1,0 +1,167 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+pthread_attr_setaffinity_np, pthread_attr_getaffinity_np
+      — set/get CPU affinity attribute in thread attributes
+      object
+
+Synopsis
+
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include <pthread.h>
+
+int
+            pthread_attr_setaffinity_np(
+pthread_attr_t *attr,
+
+ 
+size_t cpusetsize,
+
+ 
+const cpu_set_t *cpuset);
+
+           
+        
+
+int
+            pthread_attr_getaffinity_np(
+pthread_attr_t *attr,
+
+ 
+size_t cpusetsize,
+
+ 
+cpu_set_t *cpuset);
+
+           
+        
+
+Note
+
+Compile and link with −pthread.
+
+ 
+DESCRIPTION
+The pthread_attr_setaffinity_np() function sets
+      the CPU affinity mask attribute of the thread attributes
+      object referred to by attr to the value specified in
+      cpuset. This
+      attribute determines the CPU affinity mask of a thread
+      created using the thread attributes object attr.
+The pthread_attr_getaffinity_np() function
+      returns the CPU affinity mask attribute of the thread
+      attributes object referred to by attr in the buffer pointed to
+      by cpuset.
+The argument cpusetsize is the length (in
+      bytes) of the buffer pointed to by cpuset. Typically, this
+      argument would be specified as sizeof(cpu_set_t).
+For more details on CPU affinity masks, see sched_setaffinity(2). For a
+      description of a set of macros that can be used to manipulate
+      and inspect CPU sets, see CPU_SET(3).
+
+ 
+RETURN VALUE
+On success, these functions return 0; on error, they
+      return a nonzero error number.
+
+ 
+ERRORS
+
+EINVAL
+
+(pthread_attr_setaffinity_np())
+            cpuset
+            specified a CPU that was outside the set supported by
+            the kernel. (The kernel configuration option
+            CONFIG_NR_CPUS defines
+            the range of the set supported by the kernel data type
+            used to represent CPU sets.)
+
+EINVAL
+
+(pthread_attr_getaffinity_np()) A CPU
+            in the affinity mask of the thread attributes object
+            referred to by attr lies outside the
+            range specified by cpusetsize (i.e.,
+            cpuset/cpusetsize is too
+            small).
+
+ENOMEM
+
+(pthread_attr_setaffinity_np()) Could
+            not allocate memory.
+
+ 
+VERSIONS
+These functions are provided by glibc since version
+      2.3.4.
+
+ 
+CONFORMING TO
+These functions are nonstandard GNU extensions; hence the
+      suffix "_np" (nonportable) in the names.
+
+ 
+NOTES
+In glibc 2.3.3 only, versions of these functions were
+      provided that did not have a cpusetsize argument. Instead
+      the CPU set size given to the underlying system calls was
+      always sizeof(cpu_set_t).
+
+ 
+SEE ALSO
+sched_setaffinity(2),
+      pthread_attr_init(3),
+      pthread_setaffinity_np(3),
+      cpuset(7), pthreads(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2008 Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

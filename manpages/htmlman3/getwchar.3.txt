@@ -1,0 +1,86 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+getwchar — read a wide character from standard
+      input
+
+Synopsis
+
+#include <wchar.h>
+
+wint_t
+            getwchar(
+void);
+ 
+
+           
+        
+
+ 
+DESCRIPTION
+The getwchar() function is
+      the wide-character equivalent of the getchar(3) function. It
+      reads a wide character from stdin and returns it. If the end of stream
+      is reached, or if ferror(stdin) becomes true,
+      it returns WEOF. If a
+      wide-character conversion error occurs, it sets errno to EILSEQ and returns WEOF.
+For a nonlocking counterpart, see unlocked_stdio(3).
+
+ 
+RETURN VALUE
+The getwchar() function
+      returns the next wide-character from standard input, or
+      WEOF.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of getwchar()
+      depends on the LC_CTYPE
+      category of the current locale.
+It is reasonable to expect that getwchar() will actually read a multibyte
+      sequence from standard input and then convert it to a wide
+      character.
+
+ 
+SEE ALSO
+fgetwc(3), unlocked_stdio(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification
+
+                       http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

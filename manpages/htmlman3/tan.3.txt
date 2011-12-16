@@ -1,0 +1,169 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+tan, tanf, tanl — tangent function
+
+Synopsis
+
+#include <math.h>
+
+double
+            tan(
+double x);
+
+           
+        
+
+float
+            tanf(
+float x);
+
+           
+        
+
+long double
+            tanl(
+long double x);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+tanf(), tanl():
+
+_BSD_SOURCE ||
+                      _SVID_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 600 || _ISOC99_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L;
+
+or
+                      cc
+-std=c99
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The tan() function returns
+      the tangent of x,
+      where x is given in
+      radians.
+
+ 
+RETURN VALUE
+On success, these functions return the tangent of
+      x.
+If x is a NaN, a
+      NaN is returned.
+If x is positive
+      infinity or negative infinity, a domain error occurs, and a
+      NaN is returned.
+If the correct result would overflow, a range error
+      occurs, and the functions return HUGE_VAL, HUGE_VALF, or HUGE_VALL, respectively, with the
+      mathematically correct sign.
+
+ 
+ERRORS
+See math_error(7) for
+      information on how to determine whether an error has occurred
+      when calling these functions.
+The following errors can occur:
+
+Domain error: x is an
+          infinity
+
+errno is set to
+            EDOM (but see BUGS). An
+            invalid floating-point exception (FE_INVALID) is raised.
+
+Range error: result
+          overflow
+
+An overflow floating-point exception (FE_OVERFLOW) is raised.
+
+ 
+CONFORMING TO
+C99, POSIX.1-2001. The variant returning double also conforms to SVr4, 4.3BSD, C89.
+
+ 
+BUGS
+Before version 2.10, the glibc implementation did not set
+      errno to EDOM when a domain error occurred.
+
+ 
+SEE ALSO
+acos(3), asin(3), atan(3), atan2(3), cos(3), ctan(3), sin(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified 1993-07-24 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified 2002-07-27 by Walter Harms
+
+                  (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+

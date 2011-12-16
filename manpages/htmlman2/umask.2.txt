@@ -1,0 +1,135 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+umask — set file mode creation mask
+
+Synopsis
+
+#include <sys/types.h>
+#include <sys/stat.h>
+
+mode_t
+            umask(
+mode_t mask);
+
+           
+        
+
+ 
+DESCRIPTION
+umask() sets the calling
+      process's file mode creation mask (umask) to mask & 0777 (i.e., only the
+      file permission bits of mask are used), and returns the
+      previous value of the mask.
+The umask is used by open(2), mkdir(2), and other system
+      calls that create files to modify the permissions placed on
+      newly created files or directories. Specifically, permissions
+      in the umask are turned off from the mode argument to open(2) and mkdir(2).
+The constants that should be used to specify mask are described under
+      stat(2).
+The typical default value for the process umask is
+      S_IWGRP | S_IWOTH
+      (octal 022). In the usual case where the mode argument to open(2) is specified
+      as:
+
+    S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH
+
+(octal 0666) when creating a new file, the permissions on
+      the resulting file will be:
+
+    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
+
+(because 0666 & ~022 = 0644; i.e.,
+      rw−r−−r−−).
+
+ 
+RETURN VALUE
+This system call always succeeds and the previous value of
+      the mask is returned.
+
+ 
+CONFORMING TO
+SVr4, 4.3BSD, POSIX.1-2001.
+
+ 
+NOTES
+A child process created via fork(2) inherits its
+      parent's umask. The umask is left unchanged by execve(2).
+The umask setting also affects the permissions assigned to
+      POSIX IPC objects (mq_open(3), sem_open(3), shm_open(3)), FIFOs
+      (mkfifo(3)), and UNIX domain
+      sockets (unix(7)) created by the
+      process. The umask does not affect the permissions assigned
+      to System V IPC objects created by the process (using
+      msgget(2), semget(2), shmget(2)).
+
+ 
+SEE ALSO
+chmod(2), mkdir(2), open(2), stat(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (c) 2006, 2008, Michael Kerrisk (mtk.manpagesdocument.write('@');(@)gmail.com)
+
+                  (A few fragments remain from an earlier (1992) version written in
+
+                  1992 by Drew Eckhardt <drewdocument.write('@');(@)cs.colorado.edu>.)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Modified by Michael Haardt <michaeldocument.write('@');(@)moria.de>
+
+                  Modified Sat Jul 24 12:51:53 1993 by Rik Faith <faithdocument.write('@');(@)cs.unc.edu>
+
+                  Modified Tue Oct 22 22:39:04 1996 by Eric S. Raymond <esrdocument.write('@');(@)thyrsus.com>
+
+                  Modified Thu May  1 06:05:54 UTC 1997 by Nicolás Lichtmaier
+
+                   <nickdocument.write('@');(@)debian.com> with Lars Wirzenius <liwdocument.write('@');(@)iki.fi> suggestion
+
+                  2006-05-13, mtk, substantial rewrite of description of 'mask'
+
+                  2008-01-09, mtk, a few rewrites and additions.
+

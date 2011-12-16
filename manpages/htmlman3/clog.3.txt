@@ -1,0 +1,81 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+clog, clogf, clogl — natural logarithm of a complex
+      number
+
+Synopsis
+
+#include <complex.h>
+
+double complex
+            clog(
+double complex z);
+
+           
+        
+
+float complex
+            clogf(
+float complex z);
+
+           
+        
+
+long double complex
+            clogl(
+long double complex z);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The logarithm clog() is the
+      inverse function of the exponential cexp(3). Thus, if
+      y = clog(z), then
+      z = cexp(y). The
+      imaginary part of y is chosen in
+      the interval [−pi,pi].
+One has:
+
+    clog(z) = log(cabs(z)) + I * carg(z)
+
+Note that z close
+      to zero will cause an overflow.
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+cabs(3), cexp(3), clog10(3), clog2(3), complex(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

@@ -1,0 +1,175 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+ecvt, fcvt — convert a floating-point number to a
+      string
+
+Synopsis
+
+#include <stdlib.h>
+
+char
+            *ecvt(
+double number,
+
+ 
+int ndigits,
+
+ 
+int *decpt,
+
+ 
+int *sign);
+
+           
+        
+
+char
+            *fcvt(
+double number,
+
+ 
+int ndigits,
+
+ 
+int *decpt,
+
+ 
+int *sign);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+ecvt(), fcvt():
+
+Since
+                      glibc 2.12:
+
+_SVID_SOURCE ||
+                      (_XOPEN_SOURCE
+                      >= 500 || _XOPEN_SOURCE &&
+                      _XOPEN_SOURCE_EXTENDED)
+                      && !(_POSIX_C_SOURCE >=
+                      200112L || _XOPEN_SOURCE >=
+                      600)
+
+Before
+                      glibc 2.12:
+
+_SVID_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 500 || _XOPEN_SOURCE &&
+                      _XOPEN_SOURCE_EXTENDED
+
+ 
+DESCRIPTION
+The ecvt() function converts
+      number to a
+      null-terminated string of ndigits digits (where
+      ndigits is reduced to
+      a system-specific limit determined by the precision of a
+      double), and returns a pointer to
+      the string. The high-order digit is nonzero, unless
+      number is zero. The
+      low order digit is rounded. The string itself does not
+      contain a decimal point; however, the position of the decimal
+      point relative to the start of the string is stored in
+      *decpt. A negative
+      value for *decpt
+      means that the decimal point is to the left of the start of
+      the string. If the sign of number is negative, *sign is set to a nonzero value,
+      otherwise it is set to 0. If number is zero, it is
+      unspecified whether *decpt is 0 or 1.
+The fcvt() function is
+      identical to ecvt(), except
+      that ndigits
+      specifies the number of digits after the decimal point.
+
+ 
+RETURN VALUE
+Both the ecvt() and
+      fcvt() functions return a
+      pointer to a static string containing the ASCII
+      representation of number. The static string is
+      overwritten by each call to ecvt() or fcvt().
+
+ 
+CONFORMING TO
+SVr2; marked as LEGACY in POSIX.1-2001. POSIX.1-2008
+      removes the specifications of ecvt() and fcvt(), recommending the use of sprintf(3) instead (though
+      snprintf(3) may be
+      preferable).
+
+ 
+NOTES
+Linux libc4 and libc5 specified the type of ndigits as size_t. Not all locales use a point as the
+      radix character ("decimal point").
+
+ 
+SEE ALSO
+ecvt_r(3), gcvt(3), qecvt(3), setlocale(3), sprintf(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sat Jul 24 19:40:39 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Fri Jun 25 12:10:47 1999 by Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+

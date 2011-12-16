@@ -1,0 +1,229 @@
+
+
+Linux
+          manual pages
+Section 5
+ 
+
+ 
+ 
+
+Name
+filesystems — Linux file-system types: minix, ext,
+      ext2, ext3, ext4, Reiserfs, XFS, JFS, xia, msdos, umsdos,
+      vfat, ntfs, proc, nfs, iso9660, hpfs, sysv, smb, ncpfs
+
+ 
+DESCRIPTION
+When, as is customary, the proc file system is mounted
+      on /proc, you can find in the
+      file /proc/filesystems which
+      file systems your kernel currently supports. If you need a
+      currently unsupported one, insert the corresponding module or
+      recompile the kernel.
+In order to use a file system, you have to mount it; see mount(8).
+Below a short description of a few of the available file
+      systems.
+
+minix
+
+is the file system used in the Minix operating
+            system, the first to run under Linux. It has a number
+            of shortcomings: a 64MB partition size limit, short
+            filenames, a single timestamp, etc. It remains useful
+            for floppies and RAM disks.
+
+ext
+
+is an elaborate extension of the minix file system. It
+            has been completely superseded by the second version of
+            the extended file system (ext2) and has been
+            removed from the kernel (in 2.1.21).
+
+ext2
+
+is the high performance disk file system used by
+            Linux for fixed disks as well as removable media. The
+            second extended file system was designed as an
+            extension of the extended file system (ext). ext2 offers the best
+            performance (in terms of speed and CPU usage) of the
+            file systems supported under Linux.
+
+ext3
+
+is a journaling version of the ext2 file system. It
+            is easy to switch back and forth between ext2 and
+            ext3.
+
+ext4
+
+is a set of upgrades to ext3 including substantial
+            performance and reliability enhancements, plus large
+            increases in volume, file, and directory size
+            limits.
+
+Reiserfs
+
+is a journaling file system, designed by Hans
+            Reiser, that was integrated into Linux in kernel
+            2.4.1.
+
+XFS
+
+is a journaling file system, developed by SGI, that
+            was integrated into Linux in kernel 2.4.20.
+
+JFS
+
+is a journaling file system, developed by IBM, that
+            was integrated into Linux in kernel 2.4.24.
+
+xiafs
+
+was designed and implemented to be a stable, safe
+            file system by extending the Minix file system code. It
+            provides the basic most requested features without
+            undue complexity. The xia file system is no
+            longer actively developed or maintained. It was removed
+            from the kernel in 2.1.21.
+
+msdos
+
+is the file system used by DOS, Windows, and some
+            OS/2 computers. msdos filenames can be
+            no longer than 8 characters, followed by an optional
+            period and 3 character extension.
+
+umsdos
+
+is an extended DOS file system used by Linux. It
+            adds capability for long filenames, UID/GID, POSIX
+            permissions, and special files (devices, named pipes,
+            etc.) under the DOS file system, without sacrificing
+            compatibility with DOS.
+
+vfat
+
+is an extended DOS file system used by Microsoft
+            Windows95 and Windows NT. VFAT adds the capability to
+            use long filenames under the MSDOS file system.
+
+ntfs
+
+replaces Microsoft Window's FAT file systems (VFAT,
+            FAT32). It has reliability, performance, and
+            space-utilization enhancements plus features like ACLs,
+            journaling, encryption, and so on.
+
+proc
+
+is a pseudo file system which is used as an
+            interface to kernel data structures rather than reading
+            and interpreting /dev/kmem. In particular, its files
+            do not take disk space. See proc(5).
+
+iso9660
+
+is a CD-ROM file system type conforming to the ISO
+            9660 standard.
+
+High Sierra
+
+Linux supports High Sierra, the precursor
+                      to the ISO 9660 standard for CD-ROM file
+                      systems. It is automatically recognized
+                      within the iso9660
+                      file-system support under Linux.
+
+Rock Ridge
+
+Linux also supports the System Use Sharing
+                      Protocol records specified by the Rock Ridge
+                      Interchange Protocol. They are used to
+                      further describe the files in the iso9660 file
+                      system to a UNIX host, and provide
+                      information such as long filenames, UID/GID,
+                      POSIX permissions, and devices. It is
+                      automatically recognized within the
+                      iso9660
+                      file-system support under Linux.
+
+hpfs
+
+is the High Performance Filesystem, used in OS/2.
+            This file system is read-only under Linux due to the
+            lack of available documentation.
+
+sysv
+
+is an implementation of the SystemV/Coherent file
+            system for Linux. It implements all of Xenix FS,
+            SystemV/386 FS, and Coherent FS.
+
+nfs
+
+is the network file system used to access disks
+            located on remote computers.
+
+smb
+
+is a network file system that supports the SMB
+            protocol, used by Windows for Workgroups, Windows NT,
+            and Lan Manager.
+To use smb
+            fs, you need a special mount program, which can be
+            found in the ksmbfs package, found at ftp://sunsite.unc.edu/pub/Linux/system/Filesystems/smbfs.
+
+ncpfs
+
+is a network file system that supports the NCP
+            protocol, used by Novell NetWare.
+To use ncpfs, you need special
+            programs, which can be found at ftp://linux01.gwdg.de/pub/ncpfs.
+
+ 
+SEE ALSO
+proc(5), fsck(8), mkfs(8), mount(8)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1996 Daniel Quinlan (Daniel.Quinlandocument.write('@');(@)linux.org)
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  2007-12-14 mtk Added Reiserfs, XFS, JFS.
+

@@ -1,0 +1,120 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+dprintf, vdprintf — print to a file descriptor
+
+Synopsis
+
+#include <stdio.h>
+
+int
+            dprintf(
+int fd,
+
+ 
+const char *format,
+
+ 
+...);
+
+           
+        
+
+int
+            vdprintf(
+int fd,
+
+ 
+const char *format,
+
+ 
+va_list ap);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+dprintf(), vdprintf():
+
+Since
+                      glibc 2.10:
+
+_XOPEN_SOURCE
+                      >= 700 || _POSIX_C_SOURCE >=
+                      200809L
+
+Before
+                      glibc 2.10:
+
+_GNU_SOURCE
+
+ 
+DESCRIPTION
+The functions dprintf() and
+      vdprintf() (as found in the
+      glibc2 library) are exact analogs of fprintf(3) and vfprintf(3), except that
+      they output to a file descriptor fd instead of to a stdio stream.
+
+ 
+CONFORMING TO
+These functions are GNU extensions that are nowadays
+      specified in POSIX.1-2008.
+
+ 
+SEE ALSO
+printf(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2001 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Text fragments inspired by Martin Schulze <joeydocument.write('@');(@)infodrom.org>.
+

@@ -1,0 +1,101 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+wcsdup — duplicate a wide-character string
+
+Synopsis
+
+#include <wchar.h>
+
+wchar_t
+            *wcsdup(
+const wchar_t *s);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+wcsdup():
+
+Since
+                      glibc 2.10:
+
+_XOPEN_SOURCE
+                      >= 700 || _POSIX_C_SOURCE >=
+                      200809L
+
+Before
+                      glibc 2.10:
+
+_GNU_SOURCE
+
+ 
+DESCRIPTION
+The wcsdup() function is the
+      wide-character equivalent of the strdup(3) function. It
+      allocates and returns a new wide-character string whose
+      initial contents is a duplicate of the wide-character string
+      pointed to by s.
+Memory for the new wide-character string is obtained with
+      malloc(3), and should be
+      freed with free(3).
+
+ 
+RETURN VALUE
+The wcsdup() function
+      returns a pointer to the new wide-character string, or NULL
+      if sufficient memory was not available.
+
+ 
+ERRORS
+
+ENOMEM
+
+Insufficient memory available to allocate duplicate
+            string.
+
+ 
+CONFORMING TO
+POSIX.1-2008. This function is not specified in
+      POSIX.1-2001, and is not widely available on other
+      systems.
+
+ 
+SEE ALSO
+strdup(3), wcscpy(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+

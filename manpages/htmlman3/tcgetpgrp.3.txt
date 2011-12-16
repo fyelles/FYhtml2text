@@ -1,0 +1,152 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+tcgetpgrp, tcsetpgrp — get and set terminal
+      foreground process group
+
+Synopsis
+
+#include <unistd.h>
+
+pid_t
+            tcgetpgrp(
+int fd);
+
+           
+        
+
+int
+            tcsetpgrp(
+int fd,
+
+ 
+pid_t pgrp);
+
+           
+        
+
+ 
+DESCRIPTION
+The function tcgetpgrp()
+      returns the process group ID of the foreground process group
+      on the terminal associated to fd, which must be the
+      controlling terminal of the calling process.
+The function tcsetpgrp()
+      makes the process group with process group ID pgrp the foreground process
+      group on the terminal associated to fd, which must be the
+      controlling terminal of the calling process, and still be
+      associated with its session. Moreover, pgrp must be a (nonempty)
+      process group belonging to the same session as the calling
+      process.
+If tcsetpgrp() is called by
+      a member of a background process group in its session, and
+      the calling process is not blocking or ignoring SIGTTOU, a SIGTTOU signal is sent to all members of
+      this background process group.
+
+ 
+RETURN VALUE
+When fd refers to
+      the controlling terminal of the calling process, the function
+      tcgetpgrp() will return the
+      foreground process group ID of that terminal if there is one,
+      and some value larger than 1 that is not presently a process
+      group ID otherwise. When fd does not refer to the
+      controlling terminal of the calling process, −1 is
+      returned, and errno is set
+      appropriately.
+When successful, tcsetpgrp()
+      returns 0. Otherwise, it returns −1, and errno is set appropriately.
+
+ 
+ERRORS
+
+EBADF
+
+fd is not a
+            valid file descriptor.
+
+EINVAL
+
+pgrp has an
+            unsupported value.
+
+ENOTTY
+
+The calling process does not have a controlling
+            terminal, or it has one but it is not described by
+            fd, or, for
+            tcsetpgrp(), this
+            controlling terminal is no longer associated with the
+            session of the calling process.
+
+EPERM
+
+pgrp has a
+            supported value, but is not the process group ID of a
+            process in the same session as the calling process.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+These functions are implemented via the TIOCGPGRP and TIOCSPGRP ioctls.
+
+ 
+History
+The ioctls appeared in 4.2BSD. The functions are POSIX
+        inventions.
+
+ 
+SEE ALSO
+setpgid(2), setsid(2), credentials(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2002 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

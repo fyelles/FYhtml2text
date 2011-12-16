@@ -1,0 +1,226 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+getnetent, getnetbyname, getnetbyaddr, setnetent,
+      endnetent — get network entry
+
+Synopsis
+
+#include <netdb.h>
+
+struct netent
+            *getnetent(
+void);
+ 
+
+           
+        
+
+struct netent
+            *getnetbyname(
+const char *name);
+
+           
+        
+
+struct netent
+            *getnetbyaddr(
+uint32_t net,
+
+ 
+int type);
+
+           
+        
+
+void
+            setnetent(
+int stayopen);
+
+           
+        
+
+void
+            endnetent(
+void);
+ 
+
+           
+        
+
+ 
+DESCRIPTION
+The getnetent() function
+      reads the next entry from the networks database and returns a
+      netent structure containing
+      the broken-out fields from the entry. A connection is opened
+      to the database if necessary.
+The getnetbyname() function
+      returns a netent structure
+      for the entry from the database that matches the network
+      name.
+The getnetbyaddr() function
+      returns a netent structure
+      for the entry from the database that matches the network
+      number net of type
+      type. The net argument must be in host
+      byte order.
+The setnetent() function
+      opens a connection to the database, and sets the next entry
+      to the first entry. If stayopen is nonzero, then the
+      connection to the database will not be closed between calls
+      to one of the getnet*()
+      functions.
+The endnetent() function
+      closes the connection to the database.
+The netent structure is
+      defined in <netdb.h> as
+      follows:
+
+                  struct
+netent {
+
+ 
+char
+
+                  *
+n_name;
+
+                      
+                      /* official network name */
+                    
+
+ 
+char
+
+                  **
+n_aliases;
+
+                      /* alias list */
+                    
+
+ 
+int
+
+                   
+n_addrtype;
+
+                      
+                      /* net address type */
+                    
+
+ 
+uint32_t
+
+                   
+n_net;
+
+                      /* network number */
+                    
+
+};
+
+The members of the netent
+      structure are:
+
+n_name
+
+The official name of the network.
+
+n_aliases
+
+A NULL-terminated list of alternative names for the
+            network.
+
+n_addrtype
+
+The type of the network number; always AF_INET.
+
+n_net
+
+The network number in host byte order.
+
+ 
+RETURN VALUE
+The getnetent(),
+      getnetbyname() and getnetbyaddr() functions return a pointer
+      to a statically allocated netent structure, or a NULL pointer if an
+      error occurs or the end of the file is reached.
+
+ 
+FILES
+
+/etc/networks
+
+networks database file
+
+ 
+CONFORMING TO
+4.3BSD, POSIX.1-2001.
+
+ 
+NOTES
+In glibc versions before 2.2, the net argument of getnetbyaddr() was of type long.
+
+ 
+SEE ALSO
+getnetent_r(3), getprotoent(3), getservent(3)
+RFC 1101
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sat Jul 24 21:48:06 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+

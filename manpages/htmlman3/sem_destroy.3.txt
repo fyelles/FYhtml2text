@@ -1,0 +1,111 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+sem_destroy — destroy an unnamed semaphore
+
+Synopsis
+
+#include <semaphore.h>
+
+int
+            sem_destroy(
+sem_t *sem);
+
+           
+        
+
+Note
+
+Link with −lrt
+              or −pthread.
+
+ 
+DESCRIPTION
+sem_destroy() destroys the
+      unnamed semaphore at the address pointed to by sem.
+Only a semaphore that has been initialized by sem_init(3) should be
+      destroyed using sem_destroy().
+Destroying a semaphore that other processes or threads are
+      currently blocked on (in sem_wait(3)) produces
+      undefined behavior.
+Using a semaphore that has been destroyed produces
+      undefined results, until the semaphore has been reinitialized
+      using sem_init(3).
+
+ 
+RETURN VALUE
+sem_destroy() returns 0 on
+      success; on error, −1 is returned, and errno is set to indicate the error.
+
+ 
+ERRORS
+
+EINVAL
+
+sem is not a
+            valid semaphore.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+An unnamed semaphore should be destroyed with sem_destroy() before the memory in which it
+      is located is deallocated. Failure to do this can result in
+      resource leaks on some implementations.
+
+ 
+SEE ALSO
+sem_init(3), sem_post(3), sem_wait(3), sem_overview(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    t
+
+                  Copyright (C) 2006 Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

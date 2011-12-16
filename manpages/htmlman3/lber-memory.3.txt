@@ -1,0 +1,88 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+ber_memalloc, ber_memcalloc, ber_memrealloc, ber_memfree,
+      ber_memvfree — OpenLDAP LBER memory allocators
+
+Synopsis
+
+#include <lber.h>
+
+void
+            *ber_memalloc(
+ber_len_t bytes);
+
+           
+        
+
+void
+            *ber_memcalloc(
+ber_len_t nelems,
+
+ 
+ber_len_t bytes);
+
+           
+        
+
+void
+            *ber_memrealloc(
+void *ptr,
+
+ 
+ber_len_t bytes);
+
+           
+        
+
+void
+            ber_memfree(
+void *ptr);
+
+           
+        
+
+void
+            ber_memvfree(
+void **vec);
+
+           
+        
+
+ 
+LIBRARY
+OpenLDAP LBER (liblber, −llber)
+
+ 
+DESCRIPTION
+These routines are used to allocate/deallocate memory
+      used/returned by the Lightweight BER library as required by
+      lber-encode(3) and
+      lber-decode(3).
+      ber_memalloc(), ber_memcalloc(), ber_memrealloc(), and ber_memfree() are used exactly like the
+      standard malloc(3), calloc(3), realloc(3), and free(3) routines,
+      respectively. The ber_memvfree() routine is used to free a
+      dynamically allocated array of pointers to arbitrary
+      dynamically allocated objects.
+
+ 
+SEE ALSO
+lber-decode(3), lber-encode(3), lber-types(3)
+
+ 
+ACKNOWLEDGEMENTS
+OpenLDAP Software
+      is developed and maintained by The OpenLDAP Project
+      <http://www.openldap.org/>. OpenLDAP Software is derived from
+      University of Michigan LDAP 3.3 Release.
+
+                  See the following documents: COPYRIGHT, LICENSE
+

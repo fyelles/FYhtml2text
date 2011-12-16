@@ -1,0 +1,95 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+iswxdigit — test for hexadecimal digit wide
+      character
+
+Synopsis
+
+#include <wctype.h>
+
+int
+            iswxdigit(
+wint_t wc);
+
+           
+        
+
+ 
+DESCRIPTION
+The iswxdigit() function is
+      the wide-character equivalent of the isxdigit(3) function. It
+      tests whether wc is a
+      wide character belonging to the wide-character class
+      "xdigit".
+The wide-character class "xdigit" is a subclass of the
+      wide-character class "alnum", and therefore also a subclass
+      of the wide-character class "graph" and of the wide-character
+      class "print".
+Being a subclass of the wide-character class "print", the
+      wide-character class "xdigit" is disjoint from the
+      wide-character class "cntrl".
+Being a subclass of the wide-character class "graph", the
+      wide-character class "xdigit" is disjoint from the
+      wide-character class "space" and its subclass "blank".
+Being a subclass of the wide-character class "alnum", the
+      wide-character class "xdigit" is disjoint from the
+      wide-character class "punct".
+The wide-character class "xdigit" always contains at least
+      the letters 'A' to 'F', 'a' to 'f' and the digits '0' to
+      '9'.
+
+ 
+RETURN VALUE
+The iswxdigit() function
+      returns nonzero if wc
+      is a wide character belonging to the wide-character class
+      "xdigit". Otherwise it returns zero.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of iswxdigit()
+      depends on the LC_CTYPE
+      category of the current locale.
+
+ 
+SEE ALSO
+iswctype(3), isxdigit(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

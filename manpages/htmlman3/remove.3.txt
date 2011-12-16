@@ -1,0 +1,122 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+remove — remove a file or directory
+
+Synopsis
+
+#include <stdio.h>
+
+int
+            remove(
+const char *pathname);
+
+           
+        
+
+ 
+DESCRIPTION
+remove() deletes a name from
+      the file system. It calls unlink(2) for files, and
+      rmdir(2) for
+      directories.
+If the removed name was the last link to a file and no
+      processes have the file open, the file is deleted and the
+      space it was using is made available for reuse.
+If the name was the last link to a file, but any processes
+      still have the file open, the file will remain in existence
+      until the last file descriptor referring to it is closed.
+If the name referred to a symbolic link, the link is
+      removed.
+If the name referred to a socket, FIFO, or device, the
+      name is removed, but processes which have the object open may
+      continue to use it.
+
+ 
+RETURN VALUE
+On success, zero is returned. On error, −1 is
+      returned, and errno is set
+      appropriately.
+
+ 
+ERRORS
+The errors that occur are those for unlink(2) and rmdir(2).
+
+ 
+CONFORMING TO
+C89, C99, 4.3BSD, POSIX.1-2001.
+
+ 
+NOTES
+Under libc4 and libc5, remove() was an alias for unlink(2) (and hence would
+      not remove directories).
+
+ 
+BUGS
+Infelicities in the protocol underlying NFS can cause the
+      unexpected disappearance of files which are still being
+      used.
+
+ 
+SEE ALSO
+rm(1), unlink(1), link(2), mknod(2), open(2), rename(2), rmdir(2), unlink(2), mkfifo(3), symlink(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    This file is derived from unlink.2, which has the following copyright:
+
+                  --snip--
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;
+
+                                                1993 Ian Jackson.
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  --snip--
+
+                  Edited into remove.3 shape by:
+
+                  Graeme W. Wilford (G.Wilforddocument.write('@');(@)ee.surrey.ac.uk) on 13th July 1994
+

@@ -1,0 +1,150 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+ftime — return date and time
+
+Synopsis
+
+#include <sys/timeb.h>
+
+int
+            ftime(
+struct timeb *tp);
+
+           
+        
+
+ 
+DESCRIPTION
+This function returns the current time as seconds and
+      milliseconds since the Epoch, 1970-01-01 00:00:00 +0000
+      (UTC). The time is returned in tp, which is declared as
+      follows:
+
+                  struct
+timeb {
+
+ 
+time_t
+
+                   
+time;
+ 
+
+ 
+unsigned short
+
+                   
+millitm;
+ 
+
+ 
+short
+
+                   
+timezone;
+ 
+
+ 
+short
+
+                   
+dstflag;
+ 
+
+};
+
+Here time is the
+      number of seconds since the Epoch, and millitm is the number of
+      milliseconds since time seconds since the Epoch.
+      The timezone field is
+      the local timezone measured in minutes of time west of
+      Greenwich (with a negative value indicating minutes east of
+      Greenwich). The dstflag field is a flag that,
+      if nonzero, indicates that Daylight Saving time applies
+      locally during the appropriate part of the year.
+POSIX.1-2001 says that the contents of the timezone and dstflag fields are unspecified;
+      avoid relying on them.
+
+ 
+RETURN VALUE
+This function always returns 0. (POSIX.1-2001 specifies,
+      and some systems document, a −1 error return.)
+
+ 
+CONFORMING TO
+4.2BSD, POSIX.1-2001. POSIX.1-2008 removes the
+      specification of ftime().
+This function is obsolete. Don't use it. If the time in
+      seconds suffices, time(2) can be used;
+      gettimeofday(2) gives
+      microseconds; clock_gettime(2) gives
+      nanoseconds but is not as widely available.
+
+ 
+BUGS
+Under libc4 and libc5 the millitm field is meaningful.
+      But early glibc2 is buggy and returns 0 there; glibc 2.1.1 is
+      correct again.
+
+ 
+SEE ALSO
+gettimeofday(2), time(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (c) 1993 Michael Haardt
+
+                  (michaeldocument.write('@');(@)moria.de)
+                  Fri Apr  2 11:32:09 MET DST 1993
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  Modified Sat Jul 24 14:23:14 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Sun Oct 18 17:31:43 1998 by Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+
+                  2008-06-23, mtk, minor rewrites, added some details
+

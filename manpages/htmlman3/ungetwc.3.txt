@@ -1,0 +1,102 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+ungetwc — push back a wide character onto a FILE
+      stream
+
+Synopsis
+
+#include <wchar.h>
+
+wint_t
+            ungetwc(
+wint_t wc,
+
+ 
+FILE *stream);
+
+           
+        
+
+ 
+DESCRIPTION
+The ungetwc() function is
+      the wide-character equivalent of the ungetc(3) function. It
+      pushes back a wide character onto stream and returns it.
+If wc is
+      WEOF, it returns WEOF. If wc is an invalid wide
+      character, it sets errno to
+      EILSEQ and returns
+      WEOF.
+If wc is a valid
+      wide character, it is pushed back onto the stream and thus
+      becomes available for future wide-character read operations.
+      The file-position indicator is decremented by one or more.
+      The end-of-file indicator is cleared. The backing storage of
+      the file is not affected.
+
+Note
+
+wc need
+              not be the last wide-character read from the stream;
+              it can be any other valid wide character.
+
+If the implementation supports multiple push-back
+      operations in a row, the pushed-back wide characters will be
+      read in reverse order; however, only one level of push-back
+      is guaranteed.
+
+ 
+RETURN VALUE
+The ungetwc() function
+      returns wc when
+      successful, or WEOF upon
+      failure.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of ungetwc()
+      depends on the LC_CTYPE
+      category of the current locale.
+
+ 
+SEE ALSO
+fgetwc(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

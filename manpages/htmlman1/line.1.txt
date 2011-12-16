@@ -1,0 +1,36 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+line — read one line
+
+Synopsis
+
+line
+
+ 
+DESCRIPTION
+The utility line copies one line (up to
+      a newline) from standard input to standard output. It always
+      prints at least a newline and returns an exit status of 1 on
+      EOF or read error.
+
+ 
+SEE ALSO
+read(1)
+
+ 
+AVAILABILITY
+The line command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    This page is in the public domain
+

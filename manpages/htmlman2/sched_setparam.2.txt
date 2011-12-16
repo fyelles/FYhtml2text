@@ -1,0 +1,162 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+sched_setparam, sched_getparam — set and get
+      scheduling parameters
+
+Synopsis
+
+#include <sched.h>
+
+int
+            sched_setparam(
+pid_t pid,
+
+ 
+const struct sched_param *param);
+
+           
+        
+
+int
+            sched_getparam(
+pid_t pid,
+
+ 
+struct sched_param *param);
+
+           
+        
+
+struct sched_param {
+    ...
+    int sched_priority;
+    ...
+};
+  
+
+ 
+DESCRIPTION
+sched_setparam() sets the
+      scheduling parameters associated with the scheduling policy
+      for the process identified by pid. If pid is zero, then the
+      parameters of the calling process are set. The interpretation
+      of the argument param
+      depends on the scheduling policy of the process identified by
+      pid. See sched_setscheduler(2) for a
+      description of the scheduling policies supported under
+      Linux.
+sched_getparam() retrieves
+      the scheduling parameters for the process identified by
+      pid. If pid is zero, then the
+      parameters of the calling process are retrieved.
+sched_setparam() checks the
+      validity of param for
+      the scheduling policy of the process. The value param−>sched_priority
+      must lie within the range given by sched_get_priority_min(2)
+      and sched_get_priority_max(2).
+For a discussion of the privileges and resource limits
+      related to scheduling priority and policy, see sched_setscheduler(2).
+POSIX systems on which sched_setparam() and sched_getparam() are available define
+      _POSIX_PRIORITY_SCHEDULING in
+      <unistd.h>
+
+ 
+RETURN VALUE
+On success, sched_setparam()
+      and sched_getparam() return 0.
+      On error, −1 is returned, and errno is set appropriately.
+
+ 
+ERRORS
+
+EINVAL
+
+The argument param does not make sense
+            for the current scheduling policy.
+
+EPERM
+
+The calling process does not have appropriate
+            privileges (Linux: does not have the CAP_SYS_NICE capability).
+
+ESRCH
+
+The process whose ID is pid could not be
+            found.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+SEE ALSO
+getpriority(2), nice(2), sched_get_priority_max(2),
+      sched_get_priority_min(2),
+      sched_getaffinity(2),
+      sched_getscheduler(2),
+      sched_setaffinity(2),
+      sched_setscheduler(2),
+      setpriority(2), capabilities(7)
+Programming for the real world
+      − POSIX.4 by Bill O. Gallmeister, O'Reilly
+      & Associates, Inc., ISBN 1-56592-074-0
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (C) Tom Bjorkholm & Markus Kuhn, 1996
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  1996-04-01 Tom Bjorkholm <tombdocument.write('@');(@)mydata.se>
+
+                             First version written
+
+                  1996-04-10 Markus Kuhn <mskuhndocument.write('@');(@)cip.informatik.uni-erlangen.de>
+
+                             revision
+
+                  Modified 2004-05-27 by Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+

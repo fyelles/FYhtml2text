@@ -1,0 +1,235 @@
+
+
+Linux
+          manual pages
+Section 8
+ 
+
+ 
+ 
+
+Name
+findmnt — find a filesystem
+
+Synopsis
+
+findmnt [options]
+
+findmnt [options] device |
+        mountpoint
+
+findmnt [options]
+        [−−source] device
+        [−−target]
+        mountpoint
+
+ 
+DESCRIPTION
+findmnt will
+      list all mounted filesytems or search for a filesystem. The
+      findmnt command
+      is able to search in /etc/fstab, /etc/fstab.d, /etc/mtab or /proc/self/mountinfo. If device or mountpoint is not given, all
+      filesystems are shown.
+The command prints all mounted filesystems in the
+      tree-like format by default.
+
+ 
+OPTIONS
+
+−h,
+          −−help
+
+Print help and exit.
+
+−s,
+          −−fstab
+
+Search in /etc/fstab
+            and /etc/fstab.d. The
+            output is in the list format (see --list).
+
+−m,
+          −−mtab
+
+Search in /etc/mtab.
+            The output is in the list format (see --list).
+
+−k,
+          −−kernel
+
+Search in /proc/self/mountinfo. The output is
+            in the tree-like format. This is the default.
+
+−c,
+          −−canonicalize
+
+Canonicalize all printed paths.
+
+−d,
+          −−direction word
+
+The search direction - forward or
+            backward.
+
+−e,
+          −−evaluate
+
+Convert all tags (LABEL or UUID) to the device
+            names.
+
+−f,
+          −−first−only
+
+Print the first matching filesystem only.
+
+−i,
+          −−invert
+
+Invert the sense of matching.
+
+−l,
+          −−list
+
+Use the list output format. This output format is
+            automatically enabled if the output is restricted by
+            −t, −O, −S or −T option and the option
+            −−submounts is
+            not used.
+
+−v,
+          −−nofsroot
+
+Do not print a [/dir] in the SOURCE column for
+            bind-mounts or btrfs subvolumes.
+
+−n,
+          −−noheadings
+
+Do not print a header line.
+
+−u,
+          −−notruncate
+
+Do not truncate text in columns. The default is to
+            not truncate the TARGET,
+            SOURCE, UUID and LABEL columns. This option disables
+            text truncation also in all other columns.
+
+−O,
+          −−options list
+
+Used to limit the set of printed filesystems. More
+            than one option may be specified in a comma-separated
+            list. The −t and
+            −O options are
+            cumulative in effect. It is different from −t in that each option is matched
+            exactly; a leading no at the beginning
+            of one option does not negate the rest. For more
+            details see mount(8).
+
+−o,
+          −−output list
+
+Define output columns. Currently supported are
+            SOURCE, TARGET, FSTYPE, OPTIONS, VFS-OPTIONS, FS-OPTIONS,
+            LABEL and UUID. The TARGET column contains tree
+            formatting if the −−list or −−raw options are not
+            specified.
+
+−r,
+          −−raw
+
+Use raw output format.
+
+−a,
+          −−ascii
+
+Use ascii characters for tree formatting.
+
+−t,
+          −−types list
+
+Used to limit the set of printed filesystems. More
+            than one type may be specified in a comma-separated
+            list. The list of filesystem types can be prefixed with
+            no to
+            specify the filesystem types on which no action should
+            be taken. For more details see mount(8).
+
+−R,
+          −−submounts
+
+Print recursively all submounts for the selected
+            filesystems. The restrictions defined by options
+            −t, −O, −S, −T and −−direction are not applied
+            to submounts. All submounts are always printed in
+            tree-like order. The option enables the tree-like
+            output format by default. This option has no effect for
+            −−mtab or
+            −−fstab.
+
+−S,
+          −−source spec
+
+Explicitly define the mount source. Supported are
+            device, LABEL= or UUID=.
+
+−T,
+          −−target dir
+
+Explicitly define the mount target (mountpoint
+            directory).
+
+ 
+EXAMPLES
+
+findmnt
+          −−fstab −t nfs
+
+Prints all nfs filesystems defined in /etc/fstab.
+
+findmnt
+          −−fstab /mnt/foo
+
+Prints all /etc/fstab
+            filesystems where the mountpoint directory is /mnt/foo.
+            It also prints bind mounts where /mnt/foo is a
+            source.
+
+findmnt
+          −−fstab --target
+          /mnt/foo
+
+Prints all /etc/fstab
+            filesystems where the mountpoint directory is
+            /mnt/foo.
+
+findmnt
+          --fstab --evaluate
+
+Prints all /etc/fstab
+            filesystems and converts LABEL= and UUID= tags to the
+            real device names.
+
+findmnt
+          -n --raw --evaluate --output=target
+          LABEL=/boot
+
+Prints only the mountpoint where the filesystem with
+            label "/boot" is mounted.
+
+ 
+AUTHORS
+
+Karel Zak <kzak@redhat.com>
+
+ 
+SEE ALSO
+mount(8), fstab(5)
+
+ 
+AVAILABILITY
+The findmnt command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+

@@ -1,0 +1,77 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+uuidgen — command−line utility to create a new
+      UUID value
+
+Synopsis
+
+uuidgen [ −r | −t ]
+
+ 
+DESCRIPTION
+The uuidgen
+      program creates (and prints) a new universally unique
+      identifier (UUID) using the libuuid(3) library. The new
+      UUID can reasonably be considered unique among all UUIDs
+      created on the local system, and among UUIDs created on other
+      systems in the past and in the future.
+There are two types of UUIDs which uuidgen can generate:
+      time-based UUIDs and random-based UUIDs. By default
+      uuidgen will
+      generate a random-based UUID if a high-quality random number
+      generator is present. Otherwise, it will chose a time-based
+      UUID. It is possible to force the generation of one of these
+      two UUID types by using the −r or −t options.
+
+ 
+OPTIONS
+
+−r
+
+Generate a random-based UUID. This method creates a
+            UUID consisting mostly of random bits. It requires that
+            the operating system have a high quality random number
+            generator, such as /dev/random.
+
+−t
+
+Generate a time-based UUID. This method creates a
+            UUID based on the system clock plus the system's
+            ethernet hardware address, if present.
+
+ 
+CONFORMING TO
+OSF DCE 1.1
+
+ 
+AUTHOR
+uuidgen was
+      written by Andreas Dilger for libuuid.
+
+ 
+AVAILABILITY
+The uuidgen command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+ 
+SEE ALSO
+libuuid(3)
+
+                    Copyright 1999 Andreas Dilger (adilgerdocument.write('@');(@)enel.ucalgary.ca)
+
+                  This man page was created for libuuid.so.1.1 from e2fsprogs-1.14.
+
+                  This file may be copied under the terms of the GNU Public License.
+
+                  Created  Wed Mar 10 17:42:12 1999, Andreas Dilger
+

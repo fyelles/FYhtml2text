@@ -1,0 +1,143 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+ 
+Name
+pam_sm_chauthtok — PAM service function for
+      authentication token management
+
+Synopsis
+
+ 
+
+#define PAM_SM_PASSWORD
+
+#include <security/pam_modules.h>
+
+PAM_EXTERN int
+            pam_sm_chauthtok(
+pam_handle_t *pamh,
+
+ 
+int flags,
+
+ 
+int argc,
+
+ 
+const char **argv);
+
+           
+        
+
+ 
+DESCRIPTION
+The pam_sm_chauthtok
+      function is the service module's implementation of the
+      pam_chauthtok(3)
+      interface.
+This function is used to (re-)set the authentication token
+      of the user.
+Valid flags, which may be logically OR'd with PAM_SILENT, are:
+
+PAM_SILENT
+
+Do not emit any messages.
+
+PAM_CHANGE_EXPIRED_AUTHTOK
+
+This argument indicates to the module that the users
+            authentication token (password) should only be changed
+            if it has expired. This flag is optional and
+            must be combined
+            with one of the following two flags. Note, however, the
+            following two options are mutually exclusive.
+
+PAM_PRELIM_CHECK
+
+This indicates that the modules are being probed as
+            to their ready status for altering the user's
+            authentication token. If the module requires access to
+            another system over some network it should attempt to
+            verify it can connect to this system on receiving this
+            flag. If a module cannot establish it is ready to
+            update the user's authentication token it should return
+            PAM_TRY_AGAIN,
+            this information will be passed back to the
+            application.
+If the control value sufficient is used in the
+            password stack, the PAM_PRELIM_CHECK section of
+            the modules following that control value is not always
+            executed.
+
+PAM_UPDATE_AUTHTOK
+
+This informs the module that this is the call it
+            should change the authorization tokens. If the flag is
+            logically OR'd with PAM_CHANGE_EXPIRED_AUTHTOK,
+            the token is only changed if it has actually
+            expired.
+
+The PAM library calls this function twice in succession.
+      The first time with PAM_PRELIM_CHECK and then, if the
+      module does not return PAM_TRY_AGAIN, subsequently with
+      PAM_UPDATE_AUTHTOK. It
+      is only on the second call that the authorization token is
+      (possibly) changed.
+
+ 
+RETURN VALUES
+
+PAM_AUTHTOK_ERR
+
+The module was unable to obtain the new
+            authentication token.
+
+PAM_AUTHTOK_RECOVERY_ERR
+
+The module was unable to obtain the old
+            authentication token.
+
+PAM_AUTHTOK_LOCK_BUSY
+
+Cannot change the authentication token since it is
+            currently locked.
+
+PAM_AUTHTOK_DISABLE_AGING
+
+Authentication token aging has been disabled.
+
+PAM_PERM_DENIED
+
+Permission denied.
+
+PAM_TRY_AGAIN
+
+Preliminary check was unsuccessful. Signals an
+            immediate return to the application is desired.
+
+PAM_SUCCESS
+
+The authentication token was successfully
+            updated.
+
+PAM_USER_UNKNOWN
+
+User unknown to password service.
+
+ 
+SEE ALSO
+pam(3), pam_chauthtok(3), pam_sm_chauthtok(3),
+      pam_strerror(3),
+      PAM(8)
+
+                  See Linux-PAM copyright notice for more information.
+                
+

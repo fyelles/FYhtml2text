@@ -1,0 +1,82 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+iswprint — test for printing wide character
+
+Synopsis
+
+#include <wctype.h>
+
+int
+            iswprint(
+wint_t wc);
+
+           
+        
+
+ 
+DESCRIPTION
+The iswprint() function is
+      the wide-character equivalent of the isprint(3) function. It
+      tests whether wc is a
+      wide character belonging to the wide-character class
+      "print".
+The wide-character class "print" is disjoint from the
+      wide-character class "cntrl".
+The wide-character class "print" contains the
+      wide-character class "graph".
+
+ 
+RETURN VALUE
+The iswprint() function
+      returns nonzero if wc
+      is a wide character belonging to the wide-character class
+      "print". Otherwise it returns zero.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of iswprint()
+      depends on the LC_CTYPE
+      category of the current locale.
+
+ 
+SEE ALSO
+isprint(3), iswctype(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

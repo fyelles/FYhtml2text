@@ -1,0 +1,114 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+inotify_rm_watch — remove an existing watch from an
+      inotify instance
+
+Synopsis
+
+#include <sys/inotify.h>
+
+int
+            inotify_rm_watch(
+int fd,
+
+ 
+int wd);
+
+           
+        
+
+ 
+DESCRIPTION
+inotify_rm_watch() removes
+      the watch associated with the watch descriptor wd from the inotify instance
+      associated with the file descriptor fd.
+Removing a watch causes an IN_IGNORED event to be generated for this
+      watch descriptor. (See inotify(7).)
+
+ 
+RETURN VALUE
+On success, inotify_rm_watch() returns zero, or
+      −1 if an error occurred (in which case, errno is set appropriately).
+
+ 
+ERRORS
+
+EBADF
+
+fd is not a
+            valid file descriptor.
+
+EINVAL
+
+The watch descriptor wd is not valid; or
+            fd is not an
+            inotify file descriptor.
+
+ 
+VERSIONS
+Inotify was merged into the 2.6.13 Linux kernel.
+
+ 
+CONFORMING TO
+This system call is Linux-specific.
+
+ 
+SEE ALSO
+inotify_add_watch(2),
+      inotify_init(2), inotify(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    man2/inotify_rm_watch.2 - inotify_rm_watch man page
+
+                  Copyright (C) 2005 Robert Love
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  2005-07-19 Robert Love <rlovedocument.write('@');(@)rlove.org> - initial version
+
+                  2006-02-07 mtk, minor changes
+

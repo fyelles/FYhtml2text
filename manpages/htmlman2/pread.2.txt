@@ -1,0 +1,161 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+pread, pwrite — read from or write to a file
+      descriptor at a given offset
+
+Synopsis
+
+#include <unistd.h>
+
+ssize_t
+            pread(
+int fd,
+
+ 
+void *buf,
+
+ 
+size_t count,
+
+ 
+off_t offset);
+
+           
+        
+
+ssize_t
+            pwrite(
+int fd,
+
+ 
+const void *buf,
+
+ 
+size_t count,
+
+ 
+off_t offset);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+pread(), pwrite():
+
+_XOPEN_SOURCE
+                      >= 500
+
+|| /*
+                      Since glibc 2.12: */
+
+_POSIX_C_SOURCE
+                      >= 200809L
+
+ 
+DESCRIPTION
+pread() reads up to
+      count bytes from file
+      descriptor fd at
+      offset offset (from
+      the start of the file) into the buffer starting at buf. The file offset is not
+      changed.
+pwrite() writes up to
+      count bytes from the
+      buffer starting at buf to the file descriptor
+      fd at offset
+      offset. The file
+      offset is not changed.
+The file referenced by fd must be capable of
+      seeking.
+
+ 
+RETURN VALUE
+On success, the number of bytes read or written is
+      returned (zero indicates that nothing was written, in the
+      case of pwrite(), or end of
+      file, in the case of pread()),
+      or −1 on error, in which case errno is set to indicate the error.
+
+ 
+ERRORS
+pread() can fail and set
+      errno to any error specified for
+      read(2) or lseek(2). pwrite() can fail and set errno to any error specified for write(2) or lseek(2).
+
+ 
+VERSIONS
+The pread() and pwrite() system calls were added to Linux
+      in version 2.1.60; the entries in the i386 system call table
+      were added in 2.1.69. C library support (including emulation
+      using lseek(2) on older kernels
+      without the system calls) was added in glibc 2.1.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+On Linux, the underlying system calls were renamed in
+      kernel 2.6: pread() became
+      pread64(), and pwrite() became pwrite64(). The system call numbers
+      remained the same. The glibc pread() and pwrite() wrapper functions transparently
+      deal with the change.
+
+ 
+SEE ALSO
+lseek(2), read(2), readv(2), write(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 1999 Joseph Samuel Myers.
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

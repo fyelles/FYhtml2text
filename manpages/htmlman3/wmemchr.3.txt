@@ -1,0 +1,80 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+wmemchr — search a wide character in a
+      wide-character array
+
+Synopsis
+
+#include <wchar.h>
+
+wchar_t
+            *wmemchr(
+const wchar_t *s,
+
+ 
+wchar_t c,
+
+ 
+size_t n);
+
+           
+        
+
+ 
+DESCRIPTION
+The wmemchr() function is
+      the wide-character equivalent of the memchr(3) function. It
+      searches the n wide
+      characters starting at s for the first occurrence of
+      the wide character c.
+
+ 
+RETURN VALUE
+The wmemchr() function
+      returns a pointer to the first occurrence of c among the n wide characters starting at
+      s, or NULL if
+      c does not occur
+      among these.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+memchr(3), wcschr(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

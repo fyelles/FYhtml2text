@@ -1,0 +1,79 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+lscpu — CPU architecture information helper
+
+Synopsis
+
+lscpu [−hpx] [ −s directory ]
+
+ 
+DESCRIPTION
+lscpu
+      gathers CPU architecture information like number of CPUs,
+      threads, cores, sockets, NUMA nodes, information about CPU
+      caches, CPU family, model, bogoMIPS, byte order and stepping
+      from sysfs and /proc/cpuinfo, and prints it in a
+      human-readable format. It supports both online and offline
+      CPUs. It can also print out in a parsable format, including
+      how different caches are shared by different CPUs, which can
+      be fed to other programs.
+
+ 
+OPTIONS
+
+−h,
+          −−help
+
+Print a help message.
+
+−p,
+          −−parse
+
+Print out in parsable instead of human-readable
+            format.
+
+−s,
+          −−sysroot directory
+
+Use the specified directory as system root.
+            This allows you to inspect a snapshot from a different
+            system.
+
+−x,
+          −−hex
+
+Use hexadecimal masks for CPU sets (e.g. 0x3). The
+            default is to print the sets in list format (e.g.
+            0,1).
+
+ 
+BUGS
+The basic overview about CPU family, model, etc. is always
+      based on the first CPU only.
+Sometimes in Xen Dom0 the kernel reports wrong data.
+
+ 
+AUTHOR
+
+Cai Qian <qcai@redhat.com>
+Karel Zak <kzak@redhat.com>
+
+ 
+AVAILABILITY
+The lscpu command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    Process this file with
+
+                  groff -man -Tascii lscpu.1
+

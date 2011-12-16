@@ -1,0 +1,57 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+psktool — Simple PSK password tool
+
+Synopsis
+
+ 
+DESCRIPTION
+Very simple program that generates random keys for use
+      with TLS-PSK. The keys are stored in hexadecimal format in a
+      file.
+
+ 
+OPTIONS
+
+−−keysize BYTES
+
+specify the number of bytes of the key
+
+−p,
+          −−passwd FILE
+
+Specify a password file.
+
+−u,
+          −−username username
+
+Specify username.
+
+−h,
+          −−help
+
+Prints a short reminder of the command line
+            options.
+
+ 
+EXAMPLES
+To create a passwd.psk with a user called test for use
+      with gnuTLS run:
+
+$ psktool −−passwd /etc/passwd.psk −u test
+
+ 
+AUTHOR
+Nikos Mavroyanopoulos <nmav@gnutls.org> and others;
+      see /usr/share/doc/gnutls−bin/AUTHORS for a complete
+      list.
+

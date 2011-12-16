@@ -1,0 +1,120 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+sincos, sincosf, sincosl — calculate sin and cos
+      simultaneously
+
+Synopsis
+
+#define _GNU_SOURCE          /* See feature_test_macros(7) */
+#include <math.h>
+
+void
+            sincos(
+double x,
+
+ 
+double *sin,
+
+ 
+double *cos);
+
+           
+        
+
+void
+            sincosf(
+float x,
+
+ 
+float *sin,
+
+ 
+float *cos);
+
+           
+        
+
+void
+            sincosl(
+long double x,
+
+ 
+long double *sin,
+
+ 
+long double *cos);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+Several applications need sine and cosine of the same
+      angle x. This
+      function computes both at the same time, and stores the
+      results in *sin and
+      *cos.
+If x is a NaN, a
+      NaN is returned in *sin and *cos.
+If x is positive
+      infinity or negative infinity, a domain error occurs, and a
+      NaN is returned in *sin and *cos.
+
+ 
+RETURN VALUE
+These functions return void.
+
+ 
+ERRORS
+See math_error(7) for
+      information on how to determine whether an error has occurred
+      when calling these functions.
+The following errors can occur:
+
+Domain error: x is an
+          infinity
+
+An invalid floating-point exception (FE_INVALID) is raised.
+
+These functions do not set errno.
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+This function is a GNU extension.
+
+ 
+SEE ALSO
+cos(3), sin(3), tan(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL, 2002-07-27 Walter Harms
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+

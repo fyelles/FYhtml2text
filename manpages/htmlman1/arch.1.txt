@@ -1,0 +1,43 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+arch — print machine architecture
+
+Synopsis
+
+arch
+
+ 
+DESCRIPTION
+arch is
+      deprecated command since release util-linux 2.13. Use
+      uname -m or use
+      arch from the
+      coreutils package.
+On current Linux systems, arch prints things such as
+      "i386", "i486", "i586", "alpha", "sparc", "arm", "m68k",
+      "mips", "ppc".
+
+ 
+SEE ALSO
+uname(1), uname(2)
+
+ 
+AVAILABILITY
+The arch command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    arch.1 -- 
+                  Copyright 1993 Rickard E. Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Public domain: may be freely distributed.
+

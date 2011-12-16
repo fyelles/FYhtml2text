@@ -1,0 +1,98 @@
+
+
+Linux
+          manual pages
+Section 5
+ 
+
+ 
+ 
+
+Name
+group — user group file
+
+ 
+DESCRIPTION
+The /etc/group file is a
+      text file that defines the groups on the system. There is one
+      entry per line, with the following format:
+
+group_name:password:GID:user_list
+
+The fields are as follows:
+
+group_name
+
+the name of the group.
+
+password
+
+the (encrypted) group password. If this field is
+            empty, no password is needed.
+
+GID
+
+the numeric group ID.
+
+user_list
+
+a list of the usernames that are members of this
+            group, separated by commas.
+
+ 
+FILES
+/etc/group
+
+ 
+BUGS
+As the 4.2BSD initgroups(3) man page
+      says: No-one seems to keep /etc/group up-to-date.
+
+ 
+SEE ALSO
+login(1), newgrp(1), getgrent(3), getgrnam(3), passwd(5)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1993 Michael Haardt (michaeldocument.write('@');(@)moria.de),
+
+                      Fri Apr  2 11:32:09 MET DST 1993
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  Modified Sat Jul 24 17:06:03 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+

@@ -1,0 +1,49 @@
+
+
+Linux
+          manual pages
+Section 8
+ 
+
+ 
+ 
+
+Name
+findfs — Find a filesystem by label or UUID
+
+Synopsis
+
+findfs LABEL= label
+
+findfs UUID= uuid
+
+ 
+DESCRIPTION
+findfs will
+      search the disks in the system looking for a filesystem which
+      has a label matching label or a UUID equal to
+      uuid. If the
+      filesystem is found, the device name for the filesystem will
+      be printed on stdout.
+
+ 
+AUTHOR
+findfs was
+      originally written by Theodore Ts'o (tytso@mit.edu) and
+      re-written for util-linux package by Karel Zak
+      (kzak@redhat.com).
+
+ 
+AVAILABILITY
+The findfs command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+ 
+SEE ALSO
+blkid(8) fsck(8)
+
+                    Copyright 1993, 1994, 1995 by Theodore Ts'o.  All Rights Reserved.
+
+                  This file may be copied under the terms of the GNU Public License.
+

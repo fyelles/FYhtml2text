@@ -1,0 +1,114 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+tcgetsid — get session ID
+
+Synopsis
+
+#define _XOPEN_SOURCE 500         /* See feature_test_macros(7) */
+#include <termios.h>
+
+pid_t
+            tcgetsid(
+int fd);
+
+           
+        
+
+ 
+DESCRIPTION
+The function tcgetsid()
+      returns the session ID of the current session that has the
+      terminal associated to fd as controlling terminal.
+      This terminal must be the controlling terminal of the calling
+      process.
+
+ 
+RETURN VALUE
+When fd refers to
+      the controlling terminal of our session, the function
+      tcgetsid() will return the
+      session ID of this session. Otherwise, −1 is returned,
+      and errno is set
+      appropriately.
+
+ 
+ERRORS
+
+EBADF
+
+fd is not a
+            valid file descriptor.
+
+ENOTTY
+
+The calling process does not have a controlling
+            terminal, or it has one but it is not described by
+            fd.
+
+ 
+VERSIONS
+tcgetsid() is provided in
+      glibc since version 2.1.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+This function is implemented via the TIOCGSID ioctl(2), present since
+      Linux 2.1.71.
+
+ 
+SEE ALSO
+getsid(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2002 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

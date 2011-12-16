@@ -1,0 +1,105 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+srptool — Simple SRP password tool
+
+Synopsis
+
+ 
+DESCRIPTION
+Very simple program that emulates the programs in the
+      Stanford SRP (Secure Remote Password) libraries using GnuTLS.
+      It is intended for use in places where you don't expect SRP
+      authentication to be the used for system users.
+In brief, to use SRP you need to create two files. These
+      are the password file that holds the users and the verifiers
+      associated with them and the configuration file to hold the
+      group parameters (called tpasswd.conf).
+
+ 
+OPTIONS
+
+−−bits BITS
+
+specify the number of bits for prime numbers (used
+            only when the −−create−conf option
+            is used).
+
+−−create−conf FILE
+
+Generate a tpasswd.conf file.
+
+−h,
+          −−help
+
+Prints a short reminder of the command line
+            options.
+
+−i,
+          −−index INDEX
+
+Specify the index of the parameters in tpasswd.conf
+            to use.
+
+−p,
+          −−passwd FILE
+
+Specify a password file.
+
+−c,
+          −−passwd−conf FILE
+
+Specify a password configuration file.
+
+−s,
+          −−salt SALT
+
+Specify salt size for crypt algorithm.
+
+−u,
+          −−username username
+
+Specify username.
+
+−−verify
+
+Just verify password.
+
+ 
+EXAMPLES
+To create tpasswd.conf which holds the g and n values for
+      SRP protocol (generator and a large prime), run:
+
+$ srptool −−create−conf /etc/tpasswd.conf
+
+This command will create /etc/tpasswd and will add user
+      'test' (you will also be prompted for a password). Verifiers
+      are stored by default in the way libsrp expects.
+
+$ srptool −−passwd /etc/tpasswd \
+    −−passwd−conf /etc/tpasswd.conf −u test
+
+This command will check against a password. If the
+      password matches the one in /etc/tpasswd you will get an
+      ok.
+
+$ srptool −−passwd /etc/tpasswd \
+    −−passwd−conf /etc/tpasswd.conf −−verify −u test
+
+ 
+AUTHOR
+Nikos Mavrogiannopoulos <nmav@gnutls.org> and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.
+This manual page was written by Ivo Timmermans
+      <ivo@debian.org>, for the Debian GNU/Linux system (but
+      may be used by others).
+

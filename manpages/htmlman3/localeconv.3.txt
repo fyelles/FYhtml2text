@@ -1,0 +1,91 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+localeconv — get numeric formatting information
+
+Synopsis
+
+#include <locale.h>
+
+struct lconv
+            *localeconv(
+void);
+ 
+
+           
+        
+
+ 
+DESCRIPTION
+The localeconv() function
+      returns a pointer to a struct
+      lconv for the current locale. This structure is
+      shown in locale(7), and contains all
+      values associated with the locale categories LC_NUMERIC and LC_MONETARY. Programs may also use the
+      functions printf(3) and strfmon(3), which behave
+      according to the actual locale in use.
+
+ 
+CONFORMING TO
+C89, C99.
+
+ 
+BUGS
+The printf(3) family of
+      functions may or may not honor the current locale.
+
+ 
+SEE ALSO
+locale(1), localedef(1), isalpha(3), nl_langinfo(3), setlocale(3), strcoll(3), strftime(3), locale(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1993 by Thomas Koenig (ig25document.write('@');(@)rz.uni-karlsruhe.de)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  License.
+                  Modified Sat Jul 24 19:01:20 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+

@@ -1,0 +1,146 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+pthread_setconcurrency, pthread_getconcurrency —
+      set/get the concurrency level
+
+Synopsis
+
+#include <pthread.h>
+
+int
+            pthread_setconcurrency(
+int new_level);
+
+           
+        
+
+int
+            pthread_getconcurrency(
+void);
+ 
+
+           
+        
+
+Note
+
+Compile and link with −pthread.
+
+ 
+DESCRIPTION
+The pthread_setconcurrency()
+      function informs the implementation of the application's
+      desired concurrency level, specified in new_level. The implementation
+      only takes this as a hint: POSIX.1 does not specify the level
+      of concurrency that should be provided as a result of calling
+      pthread_setconcurrency().
+Specifying new_level as 0 instructs the
+      implementation to manage the concurrency level as it deems
+      appropriate.
+pthread_getconcurrency()
+      returns the current value of the concurrency level for this
+      process.
+
+ 
+RETURN VALUE
+On success, pthread_setconcurrency() returns 0; on
+      error, it returns a nonzero error number.
+pthread_getconcurrency()
+      always succeeds, returning the concurrency level set by a
+      previous call to pthread_setconcurrency(), or 0, if
+      pthread_setconcurrency() has
+      not previously been called.
+
+ 
+ERRORS
+pthread_setconcurrency() can
+      fail with the following error:
+
+EINVAL
+
+new_level is
+            negative.
+
+POSIX.1-2001 also documents an EAGAIN error ("the value specified by
+      new_level would cause
+      a system resource to be exceeded").
+
+ 
+VERSIONS
+These functions are available in glibc since version
+      2.1.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+The default concurrency level is 0.
+Concurrency levels are only meaningful for M:N threading
+      implementations, where at any moment a subset of a process's
+      set of user-level threads may be bound to a smaller number of
+      kernel-scheduling entities. Setting the concurrency level
+      allows the application to give the system a hint as to the
+      number of kernel-scheduling entities that should be provided
+      for efficient execution of the application.
+Both LinuxThreads and NPTL are 1:1 threading
+      implementations, so setting the concurrency level has no
+      meaning. In other words, on Linux these functions merely
+      exist for compatibility with other systems, and they have no
+      effect on the execution of a program.
+
+ 
+SEE ALSO
+pthread_attr_setscope(3),
+      pthreads(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2009 Michael Kerrisk, <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

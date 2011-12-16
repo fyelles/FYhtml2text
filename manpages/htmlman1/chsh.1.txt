@@ -1,0 +1,87 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+chsh — change your login shell
+
+Synopsis
+
+chsh [ −s shell ] [−l] [−u] [−v] [username]
+
+ 
+DESCRIPTION
+chsh is used
+      to change your login shell. If a shell is not given on the
+      command line, chsh prompts for one.
+chsh is used
+      to change local entries only. Use ypchsh, lchsh or any other
+      implementation for non-local entries.
+
+ 
+VALID SHELLS
+chsh will
+        accept the full pathname of any executable file on the
+        system. However, it will issue a warning if the shell is
+        not listed in the /etc/shells
+        file. On the other hand, it can also be configured such
+        that it will only accept shells listed in this file, unless
+        you are root.
+
+ 
+OPTIONS
+
+−s,
+          −−shell shell
+
+Specify your login shell.
+
+−l,
+          −−list−shells
+
+Print the list of shells listed in /etc/shells and exit.
+
+−u,
+          −−help
+
+Print a usage message and exit.
+
+−v,
+          −−version
+
+Print version information and exit.
+
+ 
+SEE ALSO
+login(1), passwd(5), shells(5)
+
+ 
+AUTHOR
+Salvatore Valente <svalente@mit.edu>
+
+ 
+AVAILABILITY
+The chsh command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                   chsh.1 -- change your login shell
+
+                   (c) 1994 by salvatore valente <svalentedocument.write('@');(@)athena.mit.edu>
+
+                   this program is free software.  you can redistribute it and
+
+                   modify it under the terms of the gnu general public license.
+
+                   there is no warranty.
+
+                   $Author: faith $
+                   $Revision: 1.1 $
+                   $Date: 1995/03/12 01:28:58 $
+

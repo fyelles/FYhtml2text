@@ -1,0 +1,75 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+casin, casinf, casinl — complex arc sine
+
+Synopsis
+
+#include <complex.h>
+
+double complex
+            casin(
+double complex z);
+
+           
+        
+
+float complex
+            casinf(
+float complex z);
+
+           
+        
+
+long double complex
+            casinl(
+long double complex z);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The casin() function
+      calculates the complex arc sine of z. If y = casin(z), then z = csin(y). The real part of
+      y is chosen in the interval
+      [−pi/2,pi/2].
+One has:
+
+    casin(z) = −i clog(iz + csqrt(1 − z * z))
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+clog(3), csin(3), complex(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

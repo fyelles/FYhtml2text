@@ -1,0 +1,79 @@
+
+
+Linux
+          manual pages
+Section 7
+ 
+
+ 
+ 
+
+Name
+termio — System V terminal driver interface
+
+ 
+DESCRIPTION
+termio is the
+      name of the old System V terminal driver interface. This
+      interface defined a termio structure used to
+      store terminal settings, and a range of ioctl(2) operations to get
+      and set terminal attributes.
+The termio
+      interface is now obsolete: POSIX.1-1990 standardized a
+      modified version of this interface, under the name termios. The POSIX.1 data
+      structure differs slightly from the System V version, and
+      POSIX.1 defined a suite of functions to replace the various
+      ioctl(2) operations that
+      existed in System V. (This was done because ioctl(2) was
+      unstandardized, and its variadic third argument does not
+      allow argument type checking.)
+If you're looking for page called "termio", then you can
+      probably find most of the information that you seek in either
+      termios(3) or tty_ioctl(4).
+
+ 
+SEE ALSO
+termios(3), tty_ioctl(4)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2006 by Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  28 Dec 2006 - Initial Creation
+

@@ -1,0 +1,93 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+wctrans — wide-character translation mapping
+
+Synopsis
+
+#include <wctype.h>
+
+wctrans_t
+            wctrans(
+const char *name);
+
+           
+        
+
+ 
+DESCRIPTION
+The wctrans_t type represents a
+      mapping which can map a wide character to another wide
+      character. Its nature is implementation-dependent, but the
+      special value (wctrans_t)
+      0 denotes an invalid mapping. Nonzero
+      wctrans_t values can be passed to
+      the towctrans(3) function to
+      actually perform the wide-character mapping.
+The wctrans() function
+      returns a mapping, given by its name. The set of valid names
+      depends on the LC_CTYPE
+      category of the current locale, but the following names are
+      valid in all locales.
+
+  "tolower" − realizes the 
+tolower(3)
+mapping
+  "toupper" − realizes the 
+toupper(3)
+mapping
+
+ 
+RETURN VALUE
+The wctrans() function
+      returns a mapping descriptor if the name is valid. Otherwise it
+      returns (wctrans_t)
+      0.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of wctrans()
+      depends on the LC_CTYPE
+      category of the current locale.
+
+ 
+SEE ALSO
+towctrans(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

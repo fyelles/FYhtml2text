@@ -1,0 +1,96 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+wcpcpy — copy a wide-character string, returning a
+      pointer to its end
+
+Synopsis
+
+#include <wchar.h>
+
+wchar_t
+            *wcpcpy(
+wchar_t *dest,
+
+ 
+const wchar_t *src);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+wcpcpy():
+
+Since
+                      glibc 2.10:
+
+_XOPEN_SOURCE
+                      >= 700 || _POSIX_C_SOURCE >=
+                      200809L
+
+Before
+                      glibc 2.10:
+
+_GNU_SOURCE
+
+ 
+DESCRIPTION
+The wcpcpy() function is the
+      wide-character equivalent of the stpcpy(3) function. It
+      copies the wide-character string pointed to by src, including the terminating
+      null wide character (L'\0'),cw to the array pointed to by
+      dest.
+The strings may not overlap.
+The programmer must ensure that there is room for at least
+      wcslen(src)+1 wide
+      characters at dest.
+
+ 
+RETURN VALUE
+wcpcpy() returns a pointer
+      to the end of the wide-character string dest, that is, a pointer to the
+      terminating null wide character.
+
+ 
+CONFORMING TO
+POSIX.1-2008.
+
+ 
+SEE ALSO
+strcpy(3), wcscpy(3)
+
+ 
+COLOPHON
+This page is part of release 3.35 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+

@@ -1,0 +1,136 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+sched_get_priority_max, sched_get_priority_min — get
+      static priority range
+
+Synopsis
+
+#include <sched.h>
+
+int
+            sched_get_priority_max(
+int policy);
+
+           
+        
+
+int
+            sched_get_priority_min(
+int policy);
+
+           
+        
+
+ 
+DESCRIPTION
+sched_get_priority_max()
+      returns the maximum priority value that can be used with the
+      scheduling algorithm identified by policy. sched_get_priority_min() returns the
+      minimum priority value that can be used with the scheduling
+      algorithm identified by policy. Supported policy values are SCHED_FIFO, SCHED_RR, SCHED_OTHER, and SCHED_BATCH. Further details about these
+      policies can be found in sched_setscheduler(2).
+Processes with numerically higher priority values are
+      scheduled before processes with numerically lower priority
+      values. Thus, the value returned by sched_get_priority_max() will be greater
+      than the value returned by sched_get_priority_min().
+Linux allows the static priority value range 1 to 99 for
+      SCHED_FIFO and SCHED_RR and the priority 0 for
+      SCHED_OTHER and SCHED_BATCH. Scheduling priority ranges for
+      the various policies are not alterable.
+The range of scheduling priorities may vary on other POSIX
+      systems, thus it is a good idea for portable applications to
+      use a virtual priority range and map it to the interval given
+      by sched_get_priority_max() and
+      sched_get_priority_min().
+      POSIX.1-2001 requires a spread of at least 32 between the
+      maximum and the minimum values for SCHED_FIFO and SCHED_RR.
+POSIX systems on which sched_get_priority_max() and sched_get_priority_min() are available
+      define _POSIX_PRIORITY_SCHEDULING in <unistd.h>
+
+ 
+RETURN VALUE
+On success, sched_get_priority_max() and sched_get_priority_min() return the
+      maximum/minimum priority value for the named scheduling
+      policy. On error, −1 is returned, and errno is set appropriately.
+
+ 
+ERRORS
+
+EINVAL
+
+The argument policy does not identify
+            a defined scheduling policy.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+SEE ALSO
+sched_getaffinity(2),
+      sched_getparam(2),
+      sched_getscheduler(2),
+      sched_setaffinity(2),
+      sched_setparam(2),
+      sched_setscheduler(2)
+Programming for the real world
+      − POSIX.4 by Bill O. Gallmeister, O'Reilly
+      & Associates, Inc., ISBN 1-56592-074-0
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (C) Tom Bjorkholm & Markus Kuhn, 1996
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  1996-04-01 Tom Bjorkholm <tombdocument.write('@');(@)mydata.se>
+
+                             First version written
+
+                  1996-04-10 Markus Kuhn <mskuhndocument.write('@');(@)cip.informatik.uni-erlangen.de>
+
+                             revision
+

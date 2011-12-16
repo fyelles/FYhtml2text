@@ -1,0 +1,157 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+abs, labs, llabs, imaxabs — compute the absolute
+      value of an integer
+
+Synopsis
+
+#include <stdlib.h>
+
+int
+            abs(
+int j);
+
+           
+        
+
+long int
+            labs(
+long int j);
+
+           
+        
+
+long long int
+            llabs(
+long long int j);
+
+           
+        
+
+#include <inttypes.h>
+
+intmax_t
+            imaxabs(
+intmax_t j);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+llabs():
+
+_XOPEN_SOURCE
+                      >= 600 || _ISOC99_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L;
+
+or
+                      cc
+-std=c99
+
+ 
+DESCRIPTION
+The abs() function computes
+      the absolute value of the integer argument j. The labs(), llabs() and imaxabs() functions compute the absolute
+      value of the argument j of the appropriate integer
+      type for the function.
+
+ 
+RETURN VALUE
+Returns the absolute value of the integer argument, of the
+      appropriate integer type for the function.
+
+ 
+CONFORMING TO
+SVr4, POSIX.1-2001, 4.3BSD, C99. C89 only includes the
+      abs() and labs() functions; the functions
+      llabs() and imaxabs() were added in C99.
+
+ 
+NOTES
+Trying to take the absolute value of the most negative
+      integer is not defined.
+The llabs() function is
+      included in glibc since version 2.0, but is not in libc5 or
+      libc4. The imaxabs() function
+      is included in glibc since version 2.1.1.
+For llabs() to be declared,
+      it may be necessary to define _ISOC99_SOURCE or _ISOC9X_SOURCE (depending on the version of
+      glibc) before including any standard headers.
+GCC handles abs() and
+      labs() as built-in functions.
+      GCC 3.0 also handles llabs()
+      and imaxabs() as built-ins.
+
+ 
+SEE ALSO
+cabs(3), ceil(3), fabs(3), floor(3), rint(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Mon Mar 29 22:31:13 1993, David Metcalfe
+
+                  Modified Sun Jun  6 23:27:50 1993, David Metcalfe
+
+                  Modified Sat Jul 24 21:45:37 1993, Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Sat Dec 16 15:02:59 2000, Joseph S. Myers
+

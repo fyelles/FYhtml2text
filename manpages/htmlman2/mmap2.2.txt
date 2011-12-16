@@ -1,0 +1,138 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+mmap2 — map files or devices into memory
+
+Synopsis
+
+#include <sys/mman.h>
+
+void
+            *mmap2(
+void *addr,
+
+ 
+size_t length,
+
+ 
+int prot,
+
+ 
+int flags,
+
+ 
+int fd,
+
+ 
+off_t pgoffset);
+
+           
+        
+
+ 
+DESCRIPTION
+The mmap2() system call
+      operates in exactly the same way as mmap(2), except that the
+      final argument specifies the offset into the file in
+      4096-byte units (instead of bytes, as is done by mmap(2)). This enables
+      applications that use a 32-bit off_t to map large files (up to 2^44
+      bytes).
+
+ 
+RETURN VALUE
+On success, mmap2() returns
+      a pointer to the mapped area. On error −1 is returned
+      and errno is set
+      appropriately.
+
+ 
+ERRORS
+
+EFAULT
+
+Problem with getting the data from userspace.
+
+EINVAL
+
+(Various platforms where the page size is not 4096
+            bytes.) offset *
+            4096 is not a multiple of the system page
+            size.
+
+mmap2() can return any of
+      the same errors as mmap(2).
+
+ 
+VERSIONS
+mmap2() is available since
+      Linux 2.3.31.
+
+ 
+CONFORMING TO
+This system call is Linux-specific.
+
+ 
+NOTES
+Nowadays, the glibc mmap()
+      wrapper function invokes this system call rather than the
+      mmap(2) system call.
+On ia64, the unit for offset is actually the system
+      page size, rather than 4096 bytes.
+
+ 
+SEE ALSO
+getpagesize(2), mmap(2), mremap(2), msync(2), shm_open(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (C) 2002, Michael Kerrisk
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Modified 31 Jan 2002, Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Added description of mmap2
+                  Modified, 2004-11-25, mtk -- removed stray #endif in prototype
+

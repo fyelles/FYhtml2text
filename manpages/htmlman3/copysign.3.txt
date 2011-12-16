@@ -1,0 +1,156 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+copysign, copysignf, copysignl — copy sign of a
+      number
+
+Synopsis
+
+#include <math.h>
+
+double
+            copysign(
+double x,
+
+ 
+double y);
+
+           
+        
+
+float
+            copysignf(
+float x,
+
+ 
+float y);
+
+           
+        
+
+long double
+            copysignl(
+long double x,
+
+ 
+long double y);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+copysign(), copysignf(), copysignl():
+
+_SVID_SOURCE ||
+                      _BSD_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 600 || _ISOC99_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L;
+
+or
+                      cc
+-std=c99
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The copysign() functions
+      return a value whose absolute value matches that of
+      x, but whose sign bit
+      matches that of y.
+
+ 
+RETURN VALUE
+On success, these functions return a value whose magnitude
+      is taken from x and
+      whose sign is taken from y.
+If x is a NaN, a
+      NaN with the sign bit of y is returned.
+
+ 
+ERRORS
+No errors occur.
+
+ 
+CONFORMING TO
+C99, POSIX.1-2001. This function is defined in IEC 559
+      (and the appendix with recommended functions in IEEE 754/IEEE
+      854).
+
+ 
+NOTES
+On architectures where the floating-point formats are not
+      IEEE 754 compliant, the copysign() functions may treat a negative
+      zero as positive.
+
+ 
+SEE ALSO
+signbit(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified 1993-07-24 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified 2002-08-10 by Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+

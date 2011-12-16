@@ -1,0 +1,206 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+gethostname, sethostname — get/set hostname
+
+Synopsis
+
+#include <unistd.h>
+
+int
+            gethostname(
+char *name,
+
+ 
+size_t len);
+
+           
+        
+
+int
+            sethostname(
+const char *name,
+
+ 
+size_t len);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+gethostname():
+
+Since
+                      glibc 2.12:
+
+_BSD_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 500
+
+|| /*
+                      Since glibc 2.12: */
+
+_POSIX_C_SOURCE
+                      >= 200112L
+
+sethostname():
+
+_BSD_SOURCE ||
+                      (_XOPEN_SOURCE
+                      && _XOPEN_SOURCE <
+                      500)
+
+ 
+DESCRIPTION
+These system calls are used to access or to change the
+      hostname of the current processor.
+sethostname() sets the
+      hostname to the value given in the character array name. The len argument specifies the
+      number of bytes in name. (Thus, name does not require a
+      terminating null byte.)
+gethostname() returns the
+      null-terminated hostname in the character array name, which has a length of
+      len bytes. If the
+      null-terminated hostname is too large to fit, then the name
+      is truncated, and no error is returned (but see NOTES below).
+      POSIX.1-2001 says that if such truncation occurs, then it is
+      unspecified whether the returned buffer includes a
+      terminating null byte.
+
+ 
+RETURN VALUE
+On success, zero is returned. On error, −1 is
+      returned, and errno is set
+      appropriately.
+
+ 
+ERRORS
+
+EFAULT
+
+name is an
+            invalid address.
+
+EINVAL
+
+len is
+            negative or, for sethostname(), len is larger than the
+            maximum allowed size.
+
+ENAMETOOLONG
+
+(glibc gethostname())
+            len is smaller
+            than the actual size. (Before version 2.1, glibc uses
+            EINVAL for this
+            case.)
+
+EPERM
+
+For sethostname(), the
+            caller did not have the CAP_SYS_ADMIN capability.
+
+ 
+CONFORMING TO
+SVr4, 4.4BSD (these interfaces first appeared in 4.2BSD).
+      POSIX.1-2001 specifies gethostname() but not sethostname().
+
+ 
+NOTES
+SUSv2 guarantees that "Host names are limited to 255
+      bytes". POSIX.1-2001 guarantees that "Host names (not
+      including the terminating null byte) are limited to
+      HOST_NAME_MAX bytes". On Linux,
+      HOST_NAME_MAX is defined with
+      the value 64, which has been the limit since Linux 1.0
+      (earlier kernels imposed a limit of 8 bytes).
+
+ 
+Glibc Notes
+The GNU C library does not employ the gethostname() system call; instead, it
+        implements gethostname() as a
+        library function that calls uname(2) and copies up to
+        len bytes from the
+        returned nodename
+        field into name.
+        Having performed the copy, the function then checks if the
+        length of the nodename was greater than
+        or equal to len,
+        and if it is, then the function returns −1 with
+        errno set to ENAMETOOLONG; in this case, a
+        terminating null byte is not included in the returned
+        name.
+Versions of glibc before 2.2 handle the case where the
+        length of the nodename was greater than
+        or equal to len
+        differently: nothing is copied into name and the function returns
+        −1 with errno set to
+        ENAMETOOLONG.
+
+ 
+SEE ALSO
+getdomainname(2), setdomainname(2), uname(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright 1993 Rickard E. Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Modified 1995-07-22 by Michael Chastain <mecdocument.write('@');(@)duracef.shout.net>:
+
+                    'gethostname' is real system call on Linux/Alpha.
+
+                  Modified 1997-01-31 by Eric S. Raymond <esrdocument.write('@');(@)thyrsus.com>
+
+                  Modified 2000-06-04, 2001-12-15 by aeb
+
+                  Modified 2004-06-17 by mtk
+                  Modified 2008-11-27 by mtk
+

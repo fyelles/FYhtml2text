@@ -1,0 +1,224 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+strtod, strtof, strtold — convert ASCII string to
+      floating-point number
+
+Synopsis
+
+#include <stdlib.h>
+
+double
+            strtod(
+const char *nptr,
+
+ 
+char **endptr);
+
+           
+        
+
+float
+            strtof(
+const char *nptr,
+
+ 
+char **endptr);
+
+           
+        
+
+long double
+            strtold(
+const char *nptr,
+
+ 
+char **endptr);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+strtof(), strtold():
+
+_XOPEN_SOURCE
+                      >= 600 || _ISOC99_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L;
+
+or cc
+-std=c99
+
+ 
+DESCRIPTION
+The strtod(), strtof(), and strtold() functions convert the initial
+      portion of the string pointed to by nptr to double, float, and
+      long double representation,
+      respectively.
+The expected form of the (initial portion of the) string
+      is optional leading white space as recognized by isspace(3), an optional
+      plus ('+') or minus sign ('−') and then either (i) a
+      decimal number, or (ii) a hexadecimal number, or (iii) an
+      infinity, or (iv) a NAN (not-a-number).
+A decimal number
+      consists of a nonempty sequence of decimal digits possibly
+      containing a radix character (decimal point,
+      locale-dependent, usually '.'), optionally followed by a
+      decimal exponent. A decimal exponent consists of an 'E' or
+      'e', followed by an optional plus or minus sign, followed by
+      a nonempty sequence of decimal digits, and indicates
+      multiplication by a power of 10.
+A hexadecimal
+      number consists of a "0x" or "0X" followed by a
+      nonempty sequence of hexadecimal digits possibly containing a
+      radix character, optionally followed by a binary exponent. A
+      binary exponent consists of a 'P' or 'p', followed by an
+      optional plus or minus sign, followed by a nonempty sequence
+      of decimal digits, and indicates multiplication by a power of
+      2. At least one of radix character and binary exponent must
+      be present.
+An “infinity” is either "INF" or
+      "INFINITY", disregarding case.
+A NAN is "NAN" (disregarding
+      case) optionally followed by '(', a sequence of characters,
+      followed by ')'. The character string specifies in an
+      implementation-dependent way the type of NAN.
+
+ 
+RETURN VALUE
+These functions return the converted value, if any.
+If endptr is not
+      NULL, a pointer to the character after the last character
+      used in the conversion is stored in the location referenced
+      by endptr.
+If no conversion is performed, zero is returned and the
+      value of nptr is
+      stored in the location referenced by endptr.
+If the correct value would cause overflow, plus or minus
+      HUGE_VAL (HUGE_VALF, HUGE_VALL) is returned (according to the
+      sign of the value), and ERANGE
+      is stored in errno. If the
+      correct value would cause underflow, zero is returned and
+      ERANGE is stored in
+      errno.
+
+ 
+ERRORS
+
+ERANGE
+
+Overflow or underflow occurred.
+
+ 
+CONFORMING TO
+C89 describes strtod(), C99
+      describes the other two functions.
+
+ 
+NOTES
+Since 0 can legitimately be returned on both success and
+      failure, the calling program should set errno to 0 before the call, and then
+      determine if an error occurred by checking whether
+      errno has a nonzero value after
+      the call.
+
+ 
+EXAMPLE
+See the example on the strtol(3) manual page; the
+      use of the functions described in this manual page is
+      similar.
+
+ 
+SEE ALSO
+atof(3), atoi(3), atol(3), strtol(3), strtoul(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1990, 1991 The Regents of the University of California.
+
+                  All rights reserved.
+
+                  This code is derived from software contributed to Berkeley by
+
+                  the American National Standards Committee X3, on Information
+
+                  Processing Systems.
+
+                  Redistribution and use in source and binary forms, with or without
+
+                  modification, are permitted provided that the following conditions
+
+                  are met:
+                  1. Redistributions of source code must retain the above copyright
+
+                     notice, this list of conditions and the following disclaimer.
+
+                  2. Redistributions in binary form must reproduce the above copyright
+
+                     notice, this list of conditions and the following disclaimer in the
+
+                     documentation and/or other materials provided with the distribution.
+
+                  3. All advertising materials mentioning features or use of this software
+
+                     must display the following acknowledgement:
+
+                  This product includes software developed by the University of
+
+                  California, Berkeley and its contributors.
+
+                  4. Neither the name of the University nor the names of its contributors
+
+                     may be used to endorse or promote products derived from this software
+
+                     without specific prior written permission.
+
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+
+                  SUCH DAMAGE.
+
+                      document.write('@');(@)(#)strtod.3
+                  5.3 (Berkeley) 6/29/91
+
+                  Modified Sun Aug 21 17:16:22 1994 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Sat May 04 19:34:31 MET DST 1996 by Michael Haardt
+
+                    (michaeldocument.write('@');(@)cantor.informatik.rwth-aachen.de)
+
+                  Added strof, strtold, aeb, 2001-06-07
+

@@ -1,0 +1,123 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+io_submit — submit asynchronous I/O blocks for
+      processing
+
+Synopsis
+
+#include <libaio.h>
+
+int
+            io_submit(
+aio_context_t ctx_id,
+
+ 
+long nr,
+
+ 
+struct iocb **iocbpp);
+
+           
+        
+
+Note
+
+Link with −laio.
+
+ 
+DESCRIPTION
+io_submit() queues
+      nr I/O request blocks
+      for processing in the AIO context ctx_id. iocbpp should be an array of
+      nr AIO control
+      blocks, which will be submitted to context ctx_id.
+
+ 
+RETURN VALUE
+On success, io_submit()
+      returns the number of iocbs
+      submitted (which may be 0 if nr is zero). For the failure
+      return, see NOTES.
+
+ 
+ERRORS
+
+EAGAIN
+
+Insufficient resources are available to queue any
+            iocbs.
+
+EBADF
+
+The file descriptor specified in the first
+            iocb is invalid.
+
+EFAULT
+
+One of the data structures points to invalid
+            data.
+
+EINVAL
+
+The aio_context specified
+            by ctx_id is
+            invalid. nr is
+            less than 0. The iocb
+            at *iocbpp[0] is not properly initialized, or the
+            operation specified is invalid for the file descriptor
+            in the iocb.
+
+ENOSYS
+
+io_submit() is not
+            implemented on this architecture.
+
+ 
+VERSIONS
+The asynchronous I/O system calls first appeared in Linux
+      2.5, August 2002.
+
+ 
+CONFORMING TO
+io_submit() is
+      Linux-specific and should not be used in programs that are
+      intended to be portable.
+
+ 
+NOTES
+Glibc does not provide a wrapper function for this system
+      call.
+The wrapper provided in libaio for io_submit() does not follow the usual C
+      library conventions for indicating error: on error it returns
+      a negated error number (the negative of one of the values
+      listed in ERRORS). If the system call is invoked via
+      syscall(2), then the return
+      value follows the usual conventions for indicating an error:
+      −1, with errno set to a
+      (positive) value that indicates the error.
+
+ 
+SEE ALSO
+io_cancel(2), io_destroy(2), io_getevents(2), io_setup(2), aio(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2003 Free Software Foundation, Inc.
+
+                  This file is distributed according to the GNU General Public License.
+
+                  See the file COPYING in the top level source directory for details.
+

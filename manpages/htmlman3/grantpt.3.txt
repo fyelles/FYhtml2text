@@ -1,0 +1,93 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+grantpt — grant access to the slave
+      pseudoterminal
+
+Synopsis
+
+#define _XOPEN_SOURCE        /* See feature_test_macros(7) */
+#include <stdlib.h>
+
+int
+            grantpt(
+int fd);
+
+           
+        
+
+ 
+DESCRIPTION
+The grantpt() function
+      changes the mode and owner of the slave pseudoterminal device
+      corresponding to the master pseudoterminal referred to by
+      fd. The user ID of
+      the slave is set to the real UID of the calling process. The
+      group ID is set to an unspecified value (e.g., tty). The mode of the slave is set to 0620
+      (crw−−w−−−−).
+The behavior of grantpt() is
+      unspecified if a signal handler is installed to catch
+      SIGCHLD signals.
+
+ 
+RETURN VALUE
+When successful, grantpt()
+      returns 0. Otherwise, it returns −1 and sets
+      errno appropriately.
+
+ 
+ERRORS
+
+EACCES
+
+The corresponding slave pseudoterminal could not be
+            accessed.
+
+EBADF
+
+The fd
+            argument is not a valid open file descriptor.
+
+EINVAL
+
+The fd
+            argument is valid but not associated with a master
+            pseudoterminal.
+
+ 
+VERSIONS
+grantpt() is provided in
+      glibc since version 2.1.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+This is part of the UNIX 98 pseudoterminal support, see
+      pts(4). Many systems
+      implement this function via a set-user-ID helper binary
+      called "pt_chown". With Linux devpts no such helper binary is
+      required.
+
+ 
+SEE ALSO
+open(2), posix_openpt(3), ptsname(3), unlockpt(3), pts(4), pty(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    This page is in the public domain. - aeb
+

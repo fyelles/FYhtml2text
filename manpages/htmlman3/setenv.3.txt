@@ -1,0 +1,176 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+setenv — change or add an environment variable
+
+Synopsis
+
+#include <stdlib.h>
+
+int
+            setenv(
+const char *name,
+
+ 
+const char *value,
+
+ 
+int overwrite);
+
+           
+        
+
+int
+            unsetenv(
+const char *name);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+setenv(), unsetenv():
+
+_BSD_SOURCE ||
+                      _POSIX_C_SOURCE
+                      >= 200112L || _XOPEN_SOURCE >=
+                      600
+
+ 
+DESCRIPTION
+The setenv() function adds
+      the variable name to
+      the environment with the value value, if name does not already exist. If
+      name does exist in
+      the environment, then its value is changed to value if overwrite is nonzero; if
+      overwrite is zero,
+      then the value of name is not changed. This
+      function makes copies of the strings pointed to by name and value (by contrast with
+      putenv(3)).
+The unsetenv() function
+      deletes the variable name from the environment. If
+      name does not exist
+      in the environment, then the function succeeds, and the
+      environment is unchanged.
+
+ 
+RETURN VALUE
+The setenv() function
+      returns zero on success, or −1 on error, with
+      errno set to indicate the cause
+      of the error.
+The unsetenv() function
+      returns zero on success, or −1 on error, with
+      errno set to indicate the cause
+      of the error.
+
+ 
+ERRORS
+
+EINVAL
+
+name is
+            NULL, points to a string of length 0, or contains an
+            '=' character.
+
+ENOMEM
+
+Insufficient memory to add a new variable to the
+            environment.
+
+ 
+CONFORMING TO
+4.3BSD, POSIX.1-2001.
+
+ 
+NOTES
+POSIX.1-2001 does not require setenv() or unsetenv() to be reentrant.
+Prior to glibc 2.2.2, unsetenv() was prototyped as returning
+      void; more recent glibc versions
+      follow the POSIX.1-2001-compliant prototype shown in the
+      SYNOPSIS.
+
+ 
+BUGS
+POSIX.1-2001 specifies that if name contains an '=' character,
+      then setenv() should fail with
+      the error EINVAL; however,
+      versions of glibc before 2.3.4 allowed an '=' sign in
+      name.
+
+ 
+SEE ALSO
+clearenv(3), getenv(3), putenv(3), environ(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  and Copyright (C) 2004, 2007 Michael kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sat Jul 24 18:20:58 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Fri Feb 14 21:47:50 1997 by Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+
+                  Modified 9 Jun 2004, Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                      Changed unsetenv() prototype; added EINVAL error
+
+                      Noted nonstandard behavior of setenv() if name contains '='
+
+                  2005-08-12, mtk, glibc 2.3.4 fixed the "name contains '='" bug
+

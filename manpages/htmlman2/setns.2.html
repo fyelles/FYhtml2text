@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>setns(2) — Linux manual pages</title>
+  <link rel="stylesheet" type="text/css" href="../stylesheet/manpages.css" />
+  
+  <link rel="home" href="../index.html" title="setns(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  <div class="navheader">
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td style="width: 33%" rowspan="1" colspan="1"><a href="../index.html" shape="rect">Linux
+          manual pages</a></td>
+
+          <th rowspan="1" colspan="1"><a href="../index2.html" shape="rect">Section 2</a></th>
+
+          <td style="width: 33%" rowspan="1" colspan="1"> </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+  </div>
+
+  <div class="refentry" title="setns(2) — Linux manual pages">
+    <a id="setns.2" name="setns.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>setns — reassociate thread with a namespace</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include &lt;sched.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int
+            <strong>setns</strong>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">fd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">nstype</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="setns-2_sect1" name="setns-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Given a file descriptor referring to a namespace,
+      reassociate the calling thread with that namespace.</p>
+
+      <p>The <em class="parameter"><code>fd</code></em> argument is
+      a file descriptor referring to one of the namespace entries
+      in a <code class="filename">/proc/[pid]/ns/</code> directory;
+      see <a class="link" href="../htmlman5/proc.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">proc</span>(5)</span></a> for further
+      information on <code class="filename">/proc/[pid]/ns/</code>.
+      The calling thread will be reassociated with the
+      corresponding namespace, subject to any constraints imposed
+      by the <em class="parameter"><code>nstype</code></em>
+      argument.</p>
+
+      <p>The <em class="parameter"><code>nstype</code></em>
+      argument specifies which type of namespace the calling thread
+      may be reassociated with. This argument can have one of the
+      following values:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">0</code></span></dt>
+
+          <dd>
+            <p>Allow any type of namespace to be joined.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWIPC</code></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> must
+            refer to an IPC namespace.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWNET</code></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> must
+            refer to a network namespace.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWUTS</code></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> must
+            refer to a UTS namespace.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>Specifying <em class="parameter"><code>nstype</code></em>
+      as 0 suffices if the caller knows (or does not care) what
+      type of namespace is referred to by <em class="parameter"><code>fd</code></em>. Specifying a nonzero value
+      for <em class="parameter"><code>nstype</code></em> is useful
+      if the caller does not know what type of namespace is
+      referred to by <em class="parameter"><code>fd</code></em> and
+      wants to ensure that the namespace is of a particular type.
+      (The caller might not know the type of the namespace referred
+      to by <em class="parameter"><code>fd</code></em> if the file
+      descriptor was opened by another process and, for example,
+      passed to the caller via a UNIX domain socket.)</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="setns-2_sect2" name="setns-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <code class="function">setns</code>() returns
+      0. On failure, −1 is returned and <code class="varname">errno</code> is set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="setns-2_sect3" name="setns-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> is not a
+            valid file descriptor.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> refers to
+            a namespace whose type does not match that specified in
+            <em class="parameter"><code>nstype</code></em>, or
+            there is problem with reassociating the the thread with
+            the specified namespace.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Cannot allocate sufficient memory to change the
+            specified namespace.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The calling thread did not have the required
+            privilege (<code class="constant">CAP_SYS_ADMIN</code>)
+            for this operation.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="setns-2_sect4" name="setns-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>The <code class="function">setns</code>() system call
+      first appeared in Linux in kernel 3.0</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="setns-2_sect5" name="setns-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>The <code class="function">setns</code>() system call is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="setns-2_sect6" name="setns-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Not all of the attributes that can be shared when a new
+      thread is created using <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> can be changed
+      using <code class="function">setns</code>().</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="setns-2_sect7" name="setns-2_sect7" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>The PID namespace and the mount namespace are not
+      currently supported. (See the descriptions of <code class="constant">CLONE_NEWPID</code> and <code class="constant">CLONE_NEWNS</code> in <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>.)</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="setns-2_sect8" name="setns-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>, <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>, <a class="link" href="../htmlman2/vfork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vfork</span>(2)</span></a>, <a class="link" href="../htmlman5/proc.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">proc</span>(5)</span></a>, <a class="link" href="../htmlman7/unix.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unix</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="setns-2_sect9" name="setns-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.35 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 2011, Eric Biederman &lt;ebiederm<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>xmission.com&gt;<br />
+
+                  Licensed under the GPLv2<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

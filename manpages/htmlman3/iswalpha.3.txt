@@ -1,0 +1,97 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+iswalpha — test for alphabetic wide character
+
+Synopsis
+
+#include <wctype.h>
+
+int
+            iswalpha(
+wint_t wc);
+
+           
+        
+
+ 
+DESCRIPTION
+The iswalpha() function is
+      the wide-character equivalent of the isalpha(3) function. It
+      tests whether wc is a
+      wide character belonging to the wide-character class
+      "alpha".
+The wide-character class "alpha" is a subclass of the
+      wide-character class "alnum", and therefore also a subclass
+      of the wide-character class "graph" and of the wide-character
+      class "print".
+Being a subclass of the wide-character class "print", the
+      wide-character class "alpha" is disjoint from the
+      wide-character class "cntrl".
+Being a subclass of the wide-character class "graph", the
+      wide-character class "alpha" is disjoint from the
+      wide-character class "space" and its subclass "blank".
+Being a subclass of the wide-character class "alnum", the
+      wide-character class "alpha" is disjoint from the
+      wide-character class "punct".
+The wide-character class "alpha" is disjoint from the
+      wide-character class "digit".
+The wide-character class "alpha" contains the
+      wide-character classes "upper" and "lower".
+The wide-character class "alpha" always contains at least
+      the letters 'A' to 'Z' and 'a' to 'z'.
+
+ 
+RETURN VALUE
+The iswalpha() function
+      returns nonzero if wc
+      is a wide character belonging to the wide-character class
+      "alpha". Otherwise it returns zero.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of iswalpha()
+      depends on the LC_CTYPE
+      category of the current locale.
+
+ 
+SEE ALSO
+isalpha(3), iswctype(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

@@ -1,0 +1,110 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+gettid — get thread identification
+
+Synopsis
+
+#include <sys/types.h>
+
+pid_t
+            gettid(
+void);
+ 
+
+           
+        
+
+ 
+DESCRIPTION
+gettid() returns the
+      caller's thread ID (TID). In a single-threaded process, the
+      thread ID is equal to the process ID (PID, as returned by
+      getpid(2)). In a
+      multithreaded process, all threads have the same PID, but
+      each one has a unique TID. For further details, see the
+      discussion of CLONE_THREAD in
+      clone(2).
+
+ 
+RETURN VALUE
+On success, returns the thread ID of the calling
+      process.
+
+ 
+ERRORS
+This call is always successful.
+
+ 
+VERSIONS
+The gettid() system call
+      first appeared on Linux in kernel 2.4.11.
+
+ 
+CONFORMING TO
+gettid() is Linux-specific
+      and should not be used in programs that are intended to be
+      portable.
+
+ 
+NOTES
+Glibc does not provide a wrapper for this system call;
+      call it using syscall(2).
+The thread ID returned by this call is not the same thing
+      as a POSIX thread ID (i.e., the opaque value returned by
+      pthread_self(3)).
+
+ 
+SEE ALSO
+clone(2), fork(2), getpid(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright 2003 Abhijit Menon-Sen <amsdocument.write('@');(@)wiw.org>
+
+                  and Copyright (C) 2008 Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

@@ -1,0 +1,194 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+unshare — disassociate parts of the process
+      execution context
+
+Synopsis
+
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include <sched.h>
+
+int
+            unshare(
+int flags);
+
+           
+        
+
+ 
+DESCRIPTION
+unshare() allows a process
+      to disassociate parts of its execution context that are
+      currently being shared with other processes. Part of the
+      execution context, such as the mount namespace, is shared
+      implicitly when a new process is created using fork(2) or vfork(2), while other
+      parts, such as virtual memory, may be shared by explicit
+      request when creating a process using clone(2).
+The main use of unshare() is
+      to allow a process to control its shared execution context
+      without creating a new process.
+The flags argument
+      is a bit mask that specifies which parts of the execution
+      context should be unshared. This argument is specified by
+      ORing together zero or more of the following constants:
+
+CLONE_FILES
+
+Reverse the effect of the clone(2) CLONE_FILES flag. Unshare the file
+            descriptor table, so that the calling process no longer
+            shares its file descriptors with any other process.
+
+CLONE_FS
+
+Reverse the effect of the clone(2) CLONE_FS flag. Unshare file system
+            attributes, so that the calling process no longer
+            shares its root directory, current directory, or umask
+            attributes with any other process. chroot(2), chdir(2), or
+            umask(2)
+
+CLONE_NEWIPC (since Linux
+          2.6.19)
+
+This flag has the same effect as the clone(2) CLONE_NEWIPC flag. Unshare the System
+            V IPC namespace, so that the calling process has a
+            private copy of the System V IPC namespace which is not
+            shared with any other process. Specifying this flag
+            automatically implies CLONE_SYSVSEM as well. Use of
+            CLONE_NEWIPC requires the
+            CAP_SYS_ADMIN
+            capability.
+
+CLONE_NEWNET (since Linux
+          2.6.24)
+
+This flag has the same effect as the clone(2) CLONE_NEWNET flag. Unshare the
+            network namespace, so that the calling process is moved
+            into a new network namespace which is not shared with
+            any previously existing process. CLONE_NEWNET requires the
+            CAP_SYS_ADMIN
+            capability.
+
+CLONE_NEWNS
+
+This flag has the same effect as the clone(2) CLONE_NEWNS flag. Unshare the mount
+            namespace, so that the calling process has a private
+            copy of its namespace which is not shared with any
+            other process. Specifying this flag automatically
+            implies CLONE_FS as well.
+            Use of CLONE_NEWNS
+            requires the CAP_SYS_ADMIN capability.
+
+CLONE_SYSVSEM (since Linux
+          2.6.26)
+
+This flag reverses the effect of the clone(2) CLONE_SYSVSEM flag. Unshare System V
+            semaphore undo values, so that the calling process has
+            a private copy which is not shared with any other
+            process. Use of CLONE_SYSVSEM requires the
+            CAP_SYS_ADMIN
+            capability.
+
+CLONE_NEWUTS (since Linux
+          2.6.19)
+
+This flag has the same effect as the clone(2) CLONE_NEWUTS flag. Unshare the UTS
+            IPC namespace, so that the calling process has a
+            private copy of the UTS namespace which is not shared
+            with any other process. Use of CLONE_NEWUTS requires the
+            CAP_SYS_ADMIN
+            capability.
+
+If flags is
+      specified as zero, then unshare() is a no-op; no changes are made
+      to the calling process's execution context.
+
+ 
+RETURN VALUE
+On success, zero returned. On failure, −1 is
+      returned and errno is set to
+      indicate the error.
+
+ 
+ERRORS
+
+EINVAL
+
+An invalid bit was specified in flags.
+
+ENOMEM
+
+Cannot allocate sufficient memory to copy parts of
+            caller's context that need to be unshared.
+
+EPERM
+
+The calling process did not have the required
+            privileges for this operation.
+
+ 
+VERSIONS
+The unshare() system call
+      was added to Linux in kernel 2.6.16.
+
+ 
+CONFORMING TO
+The unshare() system call is
+      Linux-specific.
+
+ 
+NOTES
+Not all of the process attributes that can be shared when
+      a new process is created using clone(2) can be unshared
+      using unshare(). In particular,
+      as at kernel 2.6.16, unshare()
+      does not implement flags that reverse the effects of
+      CLONE_SIGHAND, CLONE_SYSVSEM, CLONE_THREAD, or CLONE_VM. Such functionality may be added
+      in the future, if required.
+
+ 
+SEE ALSO
+clone(2), fork(2), vfork(2),
+      Documentation/unshare.txt
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2006, Janak Desai <janakdocument.write('@');(@)us.ibm.com>
+
+                  and Copyright (C) 2006, Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Licensed under the GPL
+
+                  Patch Justification:
+                  unshare system call is needed to implement, using PAM,
+
+                  per-security_context and/or per-user namespace to provide
+
+                  polyinstantiated directories. Using unshare and bind mounts, a
+
+                  PAM module can create private namespace with appropriate
+
+                  directories(based on user's security context) bind mounted on
+
+                  public directories such as /tmp, thus providing an instance of
+
+                  /tmp that is based on user's security context. Without the
+
+                  unshare system call, namespace separation can only be achieved
+
+                  by clone, which would require porting and maintaining all commands
+
+                  such as login, and su, that establish a user session.
+

@@ -1,0 +1,80 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+towupper — convert a wide character to uppercase
+
+Synopsis
+
+#include <wctype.h>
+
+wint_t
+            towupper(
+wint_t wc);
+
+           
+        
+
+ 
+DESCRIPTION
+The towupper() function is
+      the wide-character equivalent of the toupper(3) function. If
+      wc is a wide
+      character, it is converted to uppercase. Characters which do
+      not have case are returned unchanged. If wc is WEOF, WEOF is
+      returned.
+
+ 
+RETURN VALUE
+The towupper() function
+      returns the uppercase equivalent of wc, or WEOF if wc is WEOF.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of towupper()
+      depends on the LC_CTYPE
+      category of the current locale.
+This function is not very appropriate for dealing with
+      Unicode characters, because Unicode knows about three cases:
+      upper, lower and title case.
+
+ 
+SEE ALSO
+iswupper(3), towctrans(3), towlower(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

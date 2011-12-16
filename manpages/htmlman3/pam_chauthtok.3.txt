@@ -1,0 +1,103 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+ 
+Name
+pam_chauthtok — updating authentication tokens
+
+Synopsis
+
+ 
+
+#include <security/pam_appl.h>
+
+int
+            pam_chauthtok(
+pam_handle_t *pamh,
+
+ 
+int flags);
+
+           
+        
+
+ 
+DESCRIPTION
+The pam_chauthtok function
+      is used to change the authentication token for a given user
+      (as indicated by the state associated with the handle
+      pamh).
+The pamh argument
+      is an authentication handle obtained by a prior call to
+      pam_start(). The flags argument is the binary or of zero or
+      more of the following values:
+
+PAM_SILENT
+
+Do not emit any messages.
+
+PAM_CHANGE_EXPIRED_AUTHTOK
+
+This argument indicates to the modules that the
+            users authentication token (password) should only be
+            changed if it has expired. If this argument is not
+            passed, the application requires that all
+            authentication tokens are to be changed.
+
+ 
+RETURN VALUES
+
+PAM_AUTHTOK_ERR
+
+A module was unable to obtain the new authentication
+            token.
+
+PAM_AUTHTOK_RECOVERY_ERR
+
+A module was unable to obtain the old authentication
+            token.
+
+PAM_AUTHTOK_LOCK_BUSY
+
+One or more of the modules was unable to change the
+            authentication token since it is currently locked.
+
+PAM_AUTHTOK_DISABLE_AGING
+
+Authentication token aging has been disabled for at
+            least one of the modules.
+
+PAM_PERM_DENIED
+
+Permission denied.
+
+PAM_SUCCESS
+
+The authentication token was successfully
+            updated.
+
+PAM_TRY_AGAIN
+
+Not all of the modules were in a position to update
+            the authentication token(s). In such a case none of the
+            user's authentication tokens are updated.
+
+PAM_USER_UNKNOWN
+
+User unknown to password service.
+
+ 
+SEE ALSO
+pam_start(3), pam_authenticate(3),
+      pam_setcred(3), pam_get_item(3), pam_strerror(3), pam(8)
+
+                  See Linux-PAM copyright notice for more information.
+                
+

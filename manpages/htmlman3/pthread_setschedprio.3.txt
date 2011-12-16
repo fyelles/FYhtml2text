@@ -1,0 +1,139 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+pthread_setschedprio — set scheduling priority of a
+      thread
+
+Synopsis
+
+#include <pthread.h>
+
+pthread_setschedprio(
+pthread_t thread,
+
+ 
+int prio);
+
+           
+        
+
+Note
+
+Compile and link with −pthread.
+
+ 
+DESCRIPTION
+The pthread_setschedprio()
+      function sets the scheduling priority of the thread
+      thread to the value
+      specified in prio.
+      (By contrast pthread_setschedparam(3)
+      changes both the scheduling policy and priority of a
+      thread.)
+
+ 
+RETURN VALUE
+On success, this function returns 0; on error, it returns
+      a nonzero error number. If pthread_setschedprio() fails, the
+      scheduling priority of thread is not changed.
+
+ 
+ERRORS
+
+EINVAL
+
+prio is not
+            valid for the scheduling policy of the specified
+            thread.
+
+EPERM
+
+The caller does not have appropriate privileges to
+            set the specified priority.
+
+ESRCH
+
+No thread with the ID thread could be
+            found.
+
+POSIX.1-2001 also documents an ENOTSUP ("attempt was made to set the
+      priority to an unsupported value") error for pthread_setschedparam(3).
+
+ 
+VERSIONS
+This function is available in glibc since version
+      2.3.4.
+
+ 
+CONFORMING TO
+POSIX.1-2001.
+
+ 
+NOTES
+For a description of the permissions required to, and the
+      effect of, changing a thread's scheduling priority, and
+      details of the permitted ranges for priorities in each
+      scheduling policy, see sched_setscheduler(2).
+
+ 
+SEE ALSO
+getrlimit(2), sched_get_priority_min(2),
+      sched_setscheduler(2),
+      pthread_attr_init(3),
+      pthread_attr_setinheritsched(3),
+      pthread_attr_setschedparam(3),
+      pthread_attr_setschedpolicy(3),
+      pthread_create(3),
+      pthread_self(3), pthread_setschedparam(3),
+      pthreads(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2008 Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

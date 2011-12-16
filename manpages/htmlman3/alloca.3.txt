@@ -1,0 +1,175 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+alloca — allocate memory that is automatically
+      freed
+
+Synopsis
+
+#include <alloca.h>
+
+void
+            *alloca(
+size_t size);
+
+           
+        
+
+ 
+DESCRIPTION
+The alloca() function
+      allocates size bytes
+      of space in the stack frame of the caller. This temporary
+      space is automatically freed when the function that called
+      alloca() returns to its
+      caller.
+
+ 
+RETURN VALUE
+The alloca() function
+      returns a pointer to the beginning of the allocated space. If
+      the allocation causes stack overflow, program behavior is
+      undefined.
+
+ 
+CONFORMING TO
+This function is not in POSIX.1-2001.
+There is evidence that the alloca() function appeared in 32V, PWB,
+      PWB.2, 3BSD, and 4BSD. There is a man page for it in 4.3BSD.
+      Linux uses the GNU version.
+
+ 
+NOTES
+The alloca() function is
+      machine- and compiler-dependent. For certain applications,
+      its use can improve efficiency compared to the use of
+      malloc(3) plus free(3). In certain cases,
+      it can also simplify memory deallocation in applications that
+      use longjmp(3) or siglongjmp(3). Otherwise,
+      its use is discouraged.
+Because the space allocated by alloca() is allocated within the stack
+      frame, that space is automatically freed if the function
+      return is jumped over by a call to longjmp(3) or siglongjmp(3).
+Do not attempt to free(3) space allocated by
+      alloca()!
+
+ 
+Notes on the GNU Version
+Normally, gcc(1) translates calls to
+        alloca() with inlined code.
+        This is not done when either the −ansi, −std=c89, −std=c99, or the −fno−builtin option is given
+        (and the header <alloca.h>
+        is not included). But beware! By default the glibc version
+        of <stdlib.h>
+        includes <alloca.h>
+        and that contains the line:
+
+    #define alloca(size)   __builtin_alloca (size)
+
+with messy consequences if one has a private version of
+        this function.
+The fact that the code is inlined means that it is
+        impossible to take the address of this function, or to
+        change its behavior by linking with a different
+        library.
+The inlined code often consists of a single instruction
+        adjusting the stack pointer, and does not check for stack
+        overflow. Thus, there is no NULL error return.
+
+ 
+BUGS
+There is no error indication if the stack frame cannot be
+      extended. (However, after a failed allocation, the program is
+      likely to receive a SIGSEGV
+      signal if it attempts to access the unallocated space.)
+On many systems alloca()
+      cannot be used inside the list of arguments of a function
+      call, because the stack space reserved by alloca() would appear on the stack in the
+      middle of the space for the function arguments.
+
+ 
+SEE ALSO
+brk(2), longjmp(3), malloc(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1980, 1991 Regents of the University of California.
+
+                  All rights reserved.
+
+                  Redistribution and use in source and binary forms, with or without
+
+                  modification, are permitted provided that the following conditions
+
+                  are met:
+                  1. Redistributions of source code must retain the above copyright
+
+                     notice, this list of conditions and the following disclaimer.
+
+                  2. Redistributions in binary form must reproduce the above copyright
+
+                     notice, this list of conditions and the following disclaimer in the
+
+                     documentation and/or other materials provided with the distribution.
+
+                  3. All advertising materials mentioning features or use of this software
+
+                     must display the following acknowledgement:
+
+                  This product includes software developed by the University of
+
+                  California, Berkeley and its contributors.
+
+                  4. Neither the name of the University nor the names of its contributors
+
+                     may be used to endorse or promote products derived from this software
+
+                     without specific prior written permission.
+
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+
+                  SUCH DAMAGE.
+
+                      document.write('@');(@)(#)alloca.3
+                  5.1 (Berkeley) 5/2/91
+
+                  Converted Mon Nov 29 11:05:55 1993 by Rik Faith <faithdocument.write('@');(@)cs.unc.edu>
+
+                  Modified Tue Oct 22 23:41:56 1996 by Eric S. Raymond <esrdocument.write('@');(@)thyrsus.com>
+
+                  Modified 2002-07-17, aeb
+                  2008-01-24, mtk:
+                      Various rewrites and additions (notes on longjmp() and SIGSEGV).
+
+                      Weaken warning against use of alloca() (as per Debian bug 461100).
+

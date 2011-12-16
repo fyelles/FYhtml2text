@@ -1,0 +1,166 @@
+
+
+Linux
+          manual pages
+Section 8
+ 
+
+ 
+ 
+
+Name
+shutdown — close down the system
+
+Synopsis
+
+shutdown [ −h | −r ] [−fqs] [ now | hh:ss | +mins ]
+        [message]
+
+reboot [ −h | −r ] [−fqs] [ now | hh:ss | +mins ]
+        [message]
+
+fastboot [ −h | −r ] [−fqs] [ now | hh:ss | +mins ]
+        [message]
+
+halt [ −h | −r ] [−fqs] [ now | hh:ss | +mins ]
+        [message]
+
+fasthalt [ −h | −r ] [−fqs] [ now | hh:ss | +mins ]
+        [message]
+
+ 
+DESCRIPTION
+In general, shutdown prepares the
+      system for a power down or reboot. A absolute or delta time
+      can be given, and periodic messages will be sent to all users
+      warning of the shutdown. If no message is specified on the
+      command line, shutdown will ask for a
+      message to be sent, unless the −q option is set.
+halt is the
+      same as shutdown -h -q
+      now
+fasthalt is
+      the same as shutdown -h -q -f
+      now
+reboot is
+      the same as shutdown -r -q
+      now
+fastboot is
+      the same as shutdown -r -q -f
+      now
+The default delta time, if none is specified, is 2
+      minutes.
+Five minutes before shutdown (or immediately, if shutdown
+      is less than five minutes away), the /etc/nologin file is created with a message
+      stating that the system is going down and that logins are no
+      longer permitted. The login(1) program will not
+      allow non-superusers to login during this period. A message
+      will be sent to all users at this time.
+When the shutdown time arrives, shutdown notifies all
+      users, tells init(8) not to spawn more
+      getty(8)'s, writes the shutdown
+      time into the /var/log/wtmp
+      file, kills all other processes on the system, sync(2)'s, unmounts all the
+      disks, sync(2)'s again, waits for
+      a second, and then either terminates or reboots the
+      system.
+Prior to unmounting all discs, the SIGQUIT signal is sent to the init process, which will in
+      turn exec shutdown(8). This allows
+      for clean unmounting, even if the old inode for the
+      init process
+      was unlinked. If the current process ID (PID) equals 1, then
+      shutdown(8) will pause
+      forever.
+
+ 
+OPTIONS
+
+−h
+
+Halt the system. Do not reboot. This option is used
+            when powering down the system.
+
+−r
+
+Reboot the system.
+
+−f
+
+Fast. When the system is rebooted, the file systems
+            will not be checked. This is arranged by creating
+            /fastboot, which
+            /etc/rc must detect (and
+            delete).
+
+−q
+
+Quiet. This uses a default broadcast message, and
+            does not prompt the user for one.
+
+−s
+
+Reboot in single user mode. This is arranged by
+            creating /etc/singleboot,
+            which simpleinit(8) detects
+            (and deletes).
+
+ 
+FILES
+
+/etc/rc
+/fastboot
+/etc/singleboot
+/etc/nologin
+/var/log/wtmp
+/etc/shutdown.conf
+
+ 
+CONFIG
+The configuration file /etc/shutdown.conf is used to determine the
+      action to take when halting the machine. The currently
+      supported file format is extremely primitive. The first line
+      must contain two strings separated by whitespace. The first
+      string must be HALT_ACTION and
+      the second specifies the action you wish to take on halt. The
+      options allowed are:
+
+halt
+
+This will simply halt the system. This is the
+            default behaviour. Note also that this is the fallback
+            if another option fails.
+
+power_off
+
+This will use the kernel power shutdown facility.
+            This is usually only available on machines with
+            Advanced Power Management (APM).
+
+programname
+
+This specifies a command to run to shut down the
+            power. The first character must be a "/". Bear in mind
+            that this command will be run with only the root
+            filesystem mounted (and it will be read-only), and no
+            daemons running.
+
+ 
+SEE ALSO
+umount(8), login(1), reboot(2), simpleinit(8), init(8)
+
+ 
+BUGS
+Unlike the BSD shutdown, users are
+      notified of shutdown only once or twice, instead of many
+      times, and at shorter and shorter intervals as "apocalypse
+      approaches." Some would construe this as a feature.
+
+ 
+AUTHOR
+This page documents the version of shutdown originally written
+      by Peter Orbaek (poe@daimi.aau.dk).
+
+                    Copyright 1992 Rickard E. Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  May be distributed under the GNU General Public License
+

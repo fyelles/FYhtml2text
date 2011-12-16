@@ -1,0 +1,111 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+re_comp, re_exec — BSD regex functions
+
+Synopsis
+
+#define _REGEX_RE_COMP
+#include <sys/types.h>
+#include <regex.h>
+
+char
+            *re_comp(
+char *regex);
+
+           
+        
+
+int
+            re_exec(
+char *string);
+
+           
+        
+
+ 
+DESCRIPTION
+re_comp() is used to compile
+      the null-terminated regular expression pointed to by
+      regex. The compiled
+      pattern occupies a static area, the pattern buffer, which is
+      overwritten by subsequent use of re_comp(). If regex is NULL, no operation is
+      performed and the pattern buffer's contents are not
+      altered.
+re_exec() is used to assess
+      whether the null-terminated string pointed to by string matches the previously
+      compiled regex.
+
+ 
+RETURN VALUE
+re_comp() returns NULL on
+      successful compilation of regex otherwise it returns a
+      pointer to an appropriate error message.
+re_exec() returns 1 for a
+      successful match, zero for failure.
+
+ 
+CONFORMING TO
+4.3BSD.
+
+ 
+NOTES
+These functions are obsolete; the functions documented in
+      regcomp(3) should be used
+      instead.
+
+ 
+SEE ALSO
+regcomp(3), regex(7), GNU regex
+      manual
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C), 1995, Graeme W. Wilford. (Wilf.)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Wed Jun 14 16:10:28 BST 1995 Wilf. (G.Wilforddocument.write('@');(@)@ee.surrey.ac.uk)
+

@@ -1,0 +1,150 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+sysfs — get file system type information
+
+Synopsis
+
+int
+            sysfs(
+int option,
+
+ 
+const char *fsname);
+
+           
+        
+
+int
+            sysfs(
+int option,
+
+ 
+unsigned int fs_index,
+
+ 
+char *buf);
+
+           
+        
+
+int
+            sysfs(
+int option);
+
+           
+        
+
+ 
+DESCRIPTION
+sysfs() returns information
+      about the file system types currently present in the kernel.
+      The specific form of the sysfs() call and the information returned
+      depends on the option
+      in effect:
+
+Translate the file-system identifier string
+            fsname into a
+            file-system type index.
+
+Translate the file-system type index fs_index into a
+            null-terminated file-system identifier string. This
+            string will be written to the buffer pointed to by
+            buf. Make sure
+            that buf has
+            enough space to accept the string.
+
+Return the total number of file system types
+            currently present in the kernel.
+
+The numbering of the file-system type indexes begins with
+      zero.
+
+ 
+RETURN VALUE
+On success, sysfs() returns
+      the file-system index for option 1, zero for option 2, and the number of currently configured
+      file systems for option 3. On
+      error, −1 is returned, and errno is set appropriately.
+
+ 
+ERRORS
+
+EFAULT
+
+Either fsname or buf is outside your
+            accessible address space.
+
+EINVAL
+
+fsname is
+            not a valid file-system type identifier; fs_index is
+            out-of-bounds; option is invalid.
+
+ 
+CONFORMING TO
+SVr4.
+
+ 
+NOTES
+This System-V derived system call is obsolete; don't use
+      it. On systems with /proc, the
+      same information can be obtained via /proc/filesystems; use that interface
+      instead.
+
+ 
+BUGS
+There is no libc or glibc support. There is no way to
+      guess how large buf
+      should be.
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 1995, Thomas K. Dyas <tdyasdocument.write('@');(@)eden.rutgers.edu>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Created   Wed Aug  9 1995     Thomas K. Dyas <tdyasdocument.write('@');(@)eden.rutgers.edu>
+

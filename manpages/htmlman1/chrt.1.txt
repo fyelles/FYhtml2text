@@ -1,0 +1,180 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+chrt — manipulate real-time attributes of a
+      process
+
+Synopsis
+
+chrt [options] prio command
+        [arg...]
+
+chrt [options] −p [prio] pid
+
+ 
+DESCRIPTION
+chrt(1) sets or retrieves
+      the real-time scheduling attributes of an existing PID, or
+      runs COMMAND with the given attributes. Both policy (one of
+      SCHED_OTHER, SCHED_FIFO, SCHED_RR, SCHED_BATCH, or SCHED_IDLE) and priority can be set and
+      retrieved.
+The SCHED_BATCH policy is
+      supported since Linux 2.6.16. The SCHED_IDLE policy is supported since Linux
+      2.6.23.
+The SCHED_RESET_ON_FORK flag
+      for policies SCHED_RR and SCHED_FIFO is supported since Linux
+      2.6.31.
+
+ 
+OPTIONS
+
+−p,−−pid
+
+operate on an existing PID and do not launch a new
+            task
+
+−b,−−batch
+
+set scheduling policy to SCHED_BATCH (Linux specific)
+
+−f,−−fifo
+
+set scheduling policy to SCHED_FIFO
+
+−i,−−idle
+
+set scheduling policy to SCHED_IDLE (Linux specific)
+
+−m,−−max
+
+show minimum and maximum valid priorities, then
+            exit
+
+−o,−−other
+
+set policy scheduling policy to SCHED_OTHER
+
+−r,−−rr
+
+set scheduling policy to SCHED_RR (the default)
+
+−R,−−reset−on−fork
+
+add SCHED_RESET_ON_FORK flag to the
+            SCHED_FIFO or
+            SCHED_RR scheduling
+            policy (Linux specific)
+
+−v,−−verbose
+
+show status information
+
+−h,−−help
+
+display usage information and exit
+
+−V,−−version
+
+display version information and exit
+
+ 
+USAGE
+
+The default behavior is to run a
+          new command::
+
+chrt prio command [arguments]
+
+You can also retrieve the
+          real-time attributes of an existing task:
+
+chrt -p pid
+
+Or set them:
+
+chrt -p prio pid
+
+ 
+PERMISSIONS
+A user must possess CAP_SYS_NICE to change the scheduling
+      attributes of a process. Any user can retrieve the scheduling
+      information.
+
+ 
+NOTES
+Only SCHED_FIFO,
+      SCHED_OTHER and SCHED_RR are part of POSIX 1003.1b Process
+      Scheduling. The other scheduling attributes may be ignored on
+      some systems.
+
+ 
+AUTHOR
+Written by Robert M. Love.
+
+ 
+COPYRIGHT
+Copyright © 2004 Robert M. Love
+This is free software; see the source for copying
+      conditions. There is NO warranty; not even for
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ 
+SEE ALSO
+taskset(1), nice(1), renice(1)
+See sched_setscheduler(2) for a
+      description of the Linux scheduling scheme.
+
+ 
+AVAILABILITY
+The chrt command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    chrt(1) manpage
+
+                  Copyright (C) 2004 Robert Love
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  2002-05-11 Robert Love <rmldocument.write('@');(@)tech9.net>
+
+                  Initial version
+

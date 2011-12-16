@@ -1,0 +1,117 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+strverscmp — compare two version strings
+
+Synopsis
+
+#define _GNU_SOURCE          /* See feature_test_macros(7) */
+#include <string.h>
+
+int
+            strverscmp(
+const char *s1,
+
+ 
+const char *s2);
+
+           
+        
+
+ 
+DESCRIPTION
+Often one has files jan1,
+      jan2, ..., jan9, jan10,
+      ... and it feels wrong when ls(1) orders them
+      jan1, jan10, ..., jan2, ..., jan9. In order to rectify this, GNU
+      introduced the −v option to
+      ls(1), which is implemented
+      using versionsort(3), which again
+      uses strverscmp().
+Thus, the task of strverscmp() is to compare two strings and
+      find the "right" order, while strcmp(3) only finds the
+      lexicographic order. This function does not use the locale
+      category LC_COLLATE, so is
+      meant mostly for situations where the strings are expected to
+      be in ASCII.
+What this function does is the following. If both strings
+      are equal, return 0. Otherwise find the position between two
+      bytes with the property that before it both strings are
+      equal, while directly after it there is a difference. Find
+      the largest consecutive digit strings containing (or starting
+      at, or ending at) this position. If one or both of these is
+      empty, then return what strcmp(3) would have
+      returned (numerical ordering of byte values). Otherwise,
+      compare both digit strings numerically, where digit strings
+      with one or more leading zeros are interpreted as if they
+      have a decimal point in front (so that in particular digit
+      strings with more leading zeros come before digit strings
+      with fewer leading zeros). Thus, the ordering is 000, 00,
+      01, 010, 09,
+      0, 1, 9,
+      10.
+
+ 
+RETURN VALUE
+The strverscmp() function
+      returns an integer less than, equal to, or greater than zero
+      if s1 is found,
+      respectively, to be earlier than, equal to, or later than
+      s2.
+
+ 
+CONFORMING TO
+This function is a GNU extension.
+
+ 
+SEE ALSO
+rename(1), strcasecmp(3), strcmp(3), strcoll(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (C) 2001 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

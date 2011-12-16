@@ -1,0 +1,104 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+putgrent — write a group database entry to a
+      file
+
+Synopsis
+
+#define _GNU_SOURCE          /* See feature_test_macros(7) */
+#include <grp.h>
+
+int
+            putgrent(
+const struct group *grp,
+
+ 
+FILE *fp);
+
+           
+        
+
+ 
+DESCRIPTION
+The putgrent() function is
+      the counterpart for fgetgrent(3). The function
+      writes the content of the provided struct group into the file pointed
+      to by fp. The list of
+      group members must be NULL-terminated or
+      NULL-initialized.
+The struct group is
+      defined as follows:
+
+                  struct
+group {
+
+ 
+char
+
+                  *
+gr_name;
+
+                      /* group name */
+                    
+
+ 
+char
+
+                  *
+gr_passwd;
+
+                      /* group password */
+                    
+
+ 
+gid_t
+
+                   
+gr_gid;
+
+                      /* group ID */
+                    
+
+ 
+char
+
+                  **
+gr_mem;
+
+                      /* group members */
+                    
+
+};
+
+ 
+RETURN VALUE
+The function returns zero on success, and a nonzero value
+      on error.
+
+ 
+CONFORMING TO
+This function is a GNU extension.
+
+ 
+SEE ALSO
+fgetgrent(3), getgrent(3), group(5)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2003 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

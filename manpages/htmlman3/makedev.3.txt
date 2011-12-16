@@ -1,0 +1,115 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+makedev, major, minor — manage a device number
+
+Synopsis
+
+#define _BSD_SOURCE              /* See feature_test_macros(7) */
+#include <sys/types.h>
+
+dev_t
+            makedev(
+int maj,
+
+ 
+int min);
+
+           
+        
+
+int
+            major(
+dev_t dev);
+
+           
+        
+
+int
+            minor(
+dev_t dev);
+
+           
+        
+
+ 
+DESCRIPTION
+A device ID consists of two parts: a major ID, identifying
+      the class of the device, and a minor ID, identifying a
+      specific instance of a device in that class. A device ID is
+      represented using the type dev_t.
+Given major and minor device IDs, makedev() combines these to produce a
+      device ID, returned as the function result. This device ID
+      can be given to mknod(2), for example.
+The major() and minor() functions perform the converse
+      task: given a device ID, they return, respectively, the major
+      and minor components. These macros can be useful to, for
+      example, decompose the device IDs in the structure returned
+      by stat(2).
+
+ 
+CONFORMING TO
+The makedev(), major(), and minor() functions are not specified in
+      POSIX.1, but are present on many other systems.
+
+ 
+NOTES
+These interfaces are defined as macros. Since glibc 2.3.3,
+      they have been aliases for three GNU-specific functions:
+      gnu_dev_makedev(), gnu_dev_major(), and gnu_dev_minor(). The latter names are
+      exported, but the traditional names are more portable.
+
+ 
+SEE ALSO
+mknod(2), stat(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2008 Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

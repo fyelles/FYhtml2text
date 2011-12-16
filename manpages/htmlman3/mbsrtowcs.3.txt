@@ -1,0 +1,135 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+mbsrtowcs — convert a multibyte string to a
+      wide-character string
+
+Synopsis
+
+#include <wchar.h>
+
+size_t
+            mbsrtowcs(
+wchar_t *dest,
+
+ 
+const char **src,
+
+ 
+size_t len,
+
+ 
+mbstate_t *ps);
+
+           
+        
+
+ 
+DESCRIPTION
+If dest is not a
+      NULL pointer, the mbsrtowcs()
+      function converts the multibyte string *src to a wide-character string
+      starting at dest. At
+      most len wide
+      characters are written to dest. The shift state
+      *ps is updated. The
+      conversion is effectively performed by repeatedly calling
+      mbrtowc(dest, *src, n,
+      ps) where n is some
+      positive number, as long as this call succeeds, and then
+      incrementing dest by
+      one and *src by the
+      number of bytes consumed. The conversion can stop for three
+      reasons:
+
+An invalid multibyte sequence has been encountered.
+            In this case *src is left pointing to
+            the invalid multibyte sequence, (size_t) −1 is
+            returned, and errno is set
+            to EILSEQ.
+
+len
+            non-L'\0' wide characters have been stored at
+            dest. In this
+            case *src is
+            left pointing to the next multibyte sequence to be
+            converted, and the number of wide characters written to
+            dest is
+            returned.
+
+The multibyte string has been completely converted,
+            including the terminating null wide character ('\0'),
+            which has the side effect of bringing back *ps to the initial state.
+            In this case *src is set to NULL, and
+            the number of wide characters written to dest, excluding the
+            terminating null wide character, is returned.
+
+If dest is NULL,
+      len is ignored, and
+      the conversion proceeds as above, except that the converted
+      wide characters are not written out to memory, and that no
+      length limit exists.
+In both of the above cases, if ps is a NULL pointer, a static
+      anonymous state only known to the mbsrtowcs() function is used instead.
+The programmer must ensure that there is room for at least
+      len wide characters
+      at dest.
+
+ 
+RETURN VALUE
+The mbsrtowcs() function
+      returns the number of wide characters that make up the
+      converted part of the wide-character string, not including
+      the terminating null wide character. If an invalid multibyte
+      sequence was encountered, (size_t)
+      −1 is returned, and errno set to EILSEQ.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+The behavior of mbsrtowcs()
+      depends on the LC_CTYPE
+      category of the current locale.
+Passing NULL as ps
+      is not multithread safe.
+
+ 
+SEE ALSO
+iconv(3), mbsnrtowcs(3), mbstowcs(3)
+
+ 
+COLOPHON
+This page is part of release 3.35 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    Dinkumware C library reference http://www.dinkumware.com/
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+
+                    ISO/IEC 9899:1999
+

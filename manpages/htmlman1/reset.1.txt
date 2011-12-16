@@ -1,0 +1,51 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+reset — reset the terminal
+
+Synopsis
+
+reset
+
+ 
+DESCRIPTION
+reset calls
+      tput(1) with the clear, rmacs,
+      rmm, rmul, rs1,
+      rs2, and rs3 arguments. This causes tput to send appropriate
+      reset strings to the terminal based on information in
+      /etc/termcap (for the GNU or
+      BSD tput) or in
+      the terminfo database (for the ncurses tput). This sequence seems
+      to be sufficient to reset the Linux VC's when they start
+      printing "funny-looking" characters. For good measure,
+      stty(1) is called with the
+      sane argument
+      in an attempt to get cooked mode back.
+
+ 
+SEE ALSO
+clear(1), stty(1), tput(1)
+
+ 
+AUTHOR
+Rik Faith (faith@cs.unc.edu)
+
+ 
+AVAILABILITY
+The reset command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    Copyright 1992 Rickard E. Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  May be distributed under the GNU General Public License
+

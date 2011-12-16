@@ -1,0 +1,95 @@
+
+
+Linux
+          manual pages
+Section 4
+ 
+
+ 
+ 
+
+Name
+tty — controlling terminal
+
+ 
+DESCRIPTION
+The file /dev/tty is a
+      character file with major number 5 and minor number 0,
+      usually of mode 0666 and owner.group root.tty. It is a
+      synonym for the controlling terminal of a process, if
+      any.
+In addition to the ioctl(2) requests supported
+      by the device that tty refers
+      to, the ioctl(2) request
+      TIOCNOTTY is supported.
+
+ 
+TIOCNOTTY
+Detach the calling process from its controlling
+        terminal.
+If the process is the session leader, then SIGHUP and SIGCONT signals are sent to the
+        foreground process group and all processes in the current
+        session lose their controlling tty.
+This ioctl(2) call only works
+        on file descriptors connected to /dev/tty. It is used by daemon processes
+        when they are invoked by a user at a terminal. The process
+        attempts to open /dev/tty. If
+        the open succeeds, it detaches itself from the terminal by
+        using TIOCNOTTY, while if the
+        open fails, it is obviously not attached to a terminal and
+        does not need to detach itself.
+
+ 
+FILES
+/dev/tty
+
+ 
+SEE ALSO
+chown(1), mknod(1), ioctl(2), termios(3), console(4), tty_ioctl(4), ttyS(4), agetty(8), mingetty(8)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1993 Michael Haardt (michaeldocument.write('@');(@)moria.de),
+
+                      Fri Apr  2 11:32:09 MET DST 1993
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+
+                  Modified 1993-07-24 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified 2003-04-07 by Michael Kerrisk
+

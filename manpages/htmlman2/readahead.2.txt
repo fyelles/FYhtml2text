@@ -1,0 +1,132 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+readahead — perform file readahead into page
+      cache
+
+Synopsis
+
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include <fcntl.h>
+
+ssize_t
+            readahead(
+int fd,
+
+ 
+off64_t offset,
+
+ 
+size_t count);
+
+           
+        
+
+ 
+DESCRIPTION
+readahead() populates the
+      page cache with data from a file so that subsequent reads
+      from that file will not block on disk I/O. The fd argument is a file
+      descriptor identifying the file which is to be read. The
+      offset argument
+      specifies the starting point from which data is to be read
+      and count specifies
+      the number of bytes to be read. I/O is performed in whole
+      pages, so that offset
+      is effectively rounded down to a page boundary and bytes are
+      read up to the next page boundary greater than or equal to
+      (offset+count).
+      readahead() does not read
+      beyond the end of the file. readahead() blocks until the specified data
+      has been read. The current file offset of the open file
+      referred to by fd is
+      left unchanged.
+
+ 
+RETURN VALUE
+On success, readahead()
+      returns 0; on failure, −1 is returned, with
+      errno set to indicate the cause
+      of the error.
+
+ 
+ERRORS
+
+EBADF
+
+fd is not a
+            valid file descriptor or is not open for reading.
+
+EINVAL
+
+fd does not
+            refer to a file type to which readahead() can be applied.
+
+ 
+VERSIONS
+The readahead() system call
+      appeared in Linux 2.4.13; glibc support has been provided
+      since version 2.3.
+
+ 
+CONFORMING TO
+The readahead() system call
+      is Linux-specific, and its use should be avoided in portable
+      applications.
+
+ 
+SEE ALSO
+lseek(2), madvise(2), mmap(2), posix_fadvise(2), read(2)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  This manpage is Copyright (C) 2004, Michael Kerrisk
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  2004-05-40 Created by Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  2004-10-05 aeb, minor correction
+
