@@ -1,0 +1,105 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+assert — abort the program if assertion is false
+
+Synopsis
+
+#include <assert.h>
+
+void
+            assert(
+scalar expression);
+
+           
+        
+
+ 
+DESCRIPTION
+If the macro NDEBUG was
+      defined at the moment <assert.h>
+      was last included, the macro assert() generates no code, and hence does
+      nothing at all. Otherwise, the macro assert() prints an error message to
+      standard error and terminates the program by calling
+      abort(3) if expression is false (i.e.,
+      compares equal to zero).
+The purpose of this macro is to help the programmer find
+      bugs in his program. The message "assertion failed in file
+      foo.c, function do_bar(), line 1287" is of no help at all to
+      a user.
+
+ 
+RETURN VALUE
+No value is returned.
+
+ 
+CONFORMING TO
+POSIX.1-2001, C89, C99. In C89, expression is required to be of
+      type int and undefined behavior
+      results if it is not, but in C99 it may have any scalar
+      type.
+
+ 
+BUGS
+assert() is implemented as a
+      macro; if the expression tested has side-effects, program
+      behavior will be different depending on whether NDEBUG is defined. This may create
+      Heisenbugs which go away when debugging is turned on.
+
+ 
+SEE ALSO
+abort(3), assert_perror(3), exit(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 1993 by Thomas Koenig (ig25document.write('@');(@)rz.uni-karlsruhe.de)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  License.
+                  Modified Sat Jul 24 21:42:42 1993 by Rik Faith <faithdocument.write('@');(@)cs.unc.edu>
+
+                  Modified Tue Oct 22 23:44:11 1996 by Eric S. Raymond <esrdocument.write('@');(@)thyrsus.com>
+

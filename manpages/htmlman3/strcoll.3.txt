@@ -1,0 +1,110 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+strcoll — compare two strings using the current
+      locale
+
+Synopsis
+
+#include <string.h>
+
+int
+            strcoll(
+const char *s1,
+
+ 
+const char *s2);
+
+           
+        
+
+ 
+DESCRIPTION
+The strcoll() function
+      compares the two strings s1 and s2. It returns an integer less
+      than, equal to, or greater than zero if s1 is found, respectively, to
+      be less than, to match, or be greater than s2. The comparison is based on
+      strings interpreted as appropriate for the program's current
+      locale for category LC_COLLATE.
+      (See setlocale(3).)
+
+ 
+RETURN VALUE
+The strcoll() function
+      returns an integer less than, equal to, or greater than zero
+      if s1 is found,
+      respectively, to be less than, to match, or be greater than
+      s2, when both are
+      interpreted as appropriate for the current locale.
+
+ 
+CONFORMING TO
+SVr4, 4.3BSD, C89, C99.
+
+ 
+NOTES
+In the “POSIX” or “C”
+      locales strcoll() is equivalent
+      to strcmp(3).
+
+ 
+SEE ALSO
+bcmp(3), memcmp(3), setlocale(3), strcasecmp(3), strcmp(3), string(3), strxfrm(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sun Jul 25 10:40:44 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+

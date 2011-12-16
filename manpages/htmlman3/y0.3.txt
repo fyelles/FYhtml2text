@@ -1,0 +1,256 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+y0, y0f, y0l, y1, y1f, y1l, yn, ynf, ynl — Bessel
+      functions of the second kind
+
+Synopsis
+
+#include <math.h>
+
+double
+            y0(
+double x);
+
+           
+        
+
+double
+            y1(
+double x);
+
+           
+        
+
+double
+            yn(
+int n,
+
+ 
+double x);
+
+           
+        
+
+float
+            y0f(
+float x);
+
+           
+        
+
+float
+            y1f(
+float x);
+
+           
+        
+
+float
+            ynf(
+int n,
+
+ 
+float x);
+
+           
+        
+
+long double
+            y0l(
+long double x);
+
+           
+        
+
+long double
+            y1l(
+long double x);
+
+           
+        
+
+long double
+            ynl(
+int n,
+
+ 
+long double x);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+y0(), y1(), yn():
+
+_SVID_SOURCE ||
+                      _BSD_SOURCE ||
+                      _XOPEN_SOURCE
+
+y0f(), y0l(), y1f(), y1l(), ynf(), ynl():
+
+_SVID_SOURCE ||
+                      _BSD_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 600
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The y0() and y1() functions return Bessel functions of
+      x of the second kind
+      of orders 0 and 1, respectively. The yn() function returns the Bessel function
+      of x of the second
+      kind of order n.
+The value of x
+      must be positive.
+The y0f() etc. and
+      y0l() etc. functions are
+      versions that take and return float
+      and long double values,
+      respectively.
+
+ 
+RETURN VALUE
+On success, these functions return the appropriate Bessel
+      value of the second kind for x.
+If x is a NaN, a
+      NaN is returned.
+If x is negative,
+      a domain error occurs, and the functions return -HUGE_VAL, -HUGE_VALF, or -HUGE_VALL, respectively. (POSIX.1-2001 also
+      allows a NaN return for this case.)
+If x is 0.0, a
+      pole error occurs, and the functions return -HUGE_VAL, -HUGE_VALF, or -HUGE_VALL, respectively.
+If the result underflows, a range error occurs, and the
+      functions return 0.0
+If the result overflows, a range error occurs, and the
+      functions return -HUGE_VAL,
+      -HUGE_VALF, or -HUGE_VALL, respectively. (POSIX.1-2001 also
+      allows a 0.0 return for this case.)
+
+ 
+ERRORS
+See math_error(7) for
+      information on how to determine whether an error has occurred
+      when calling these functions.
+The following errors can occur:
+
+Domain error: x is negative
+
+errno is set to
+            EDOM. An invalid
+            floating-point exception (FE_INVALID) is raised.
+
+Pole error: x is 0.0
+
+errno is set to
+            ERANGE (but see BUGS).
+            No FE_DIVBYZERO exception
+            is returned by fetestexcept(3) for
+            this case.
+
+Range error: result
+          underflow
+
+errno is set to
+            ERANGE. No FE_UNDERFLOW exception is returned by
+            fetestexcept(3) for
+            this case.
+
+Range error: result
+          overflow
+
+errno is not set for
+            this case. An overflow floating-point exception
+            (FE_OVERFLOW) is
+            raised.
+
+ 
+CONFORMING TO
+The functions returning double
+      conform to SVr4, 4.3BSD, POSIX.1-2001. The others are
+      nonstandard functions that also exist on the BSDs.
+
+ 
+BUGS
+On a pole error, these functions set errno to EDOM, instead of ERANGE as POSIX.1-2004 requires.
+In glibc version 2.3.2 and earlier, these functions do not
+      raise an invalid floating-point exception (FE_INVALID) when a domain error occurs.
+
+ 
+SEE ALSO
+j0(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sat Jul 24 19:08:17 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified 2002-08-25, aeb
+                  Modified 2004-11-12 as per suggestion by Fabian Kreutz/AEB
+
+                  2008-07-24, mtk, created this page, based on material from j0.3.
+

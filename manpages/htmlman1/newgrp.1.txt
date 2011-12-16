@@ -1,0 +1,52 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+newgrp — log in to a new group
+
+Synopsis
+
+newgrp [group]
+
+ 
+DESCRIPTION
+Newgrp
+      changes the group identification of its caller, analogously
+      to login(1). The same person
+      remains logged in, and the current directory is unchanged,
+      but calculations of access permissions to files are performed
+      with respect to the new group ID.
+If no group is specified, the GID is changed to the login
+      GID.
+
+ 
+FILES
+/etc/group
+/etc/passwd
+
+ 
+SEE ALSO
+login(1), group(5)
+
+ 
+AUTHOR
+Originally by Michael Haardt. Currently maintained by
+      Peter Orbaek (poe@daimi.aau.dk).
+
+ 
+AVAILABILITY
+The newgrp command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    Original author unknown.  This man page is in the public domain.
+
+                  Modified Sat Oct  9 17:46:48 1993 by faithdocument.write('@');(@)cs.unc.edu
+

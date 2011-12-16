@@ -1,0 +1,99 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+ 
+Name
+pam_putenv — set or change PAM environment
+      variable
+
+Synopsis
+
+ 
+
+#include <security/pam_appl.h>
+
+int
+            pam_putenv(
+pam_handle_t *pamh,
+
+ 
+const char *name_value);
+
+           
+        
+
+ 
+DESCRIPTION
+The pam_putenv function is
+      used to add or change the value of PAM environment variables
+      as associated with the pamh handle.
+The pamh argument
+      is an authentication handle obtained by a prior call to
+      pam_start(). The name_value argument is a single
+      NUL terminated string of one of the following forms:
+
+NAME=value of variable
+
+In this case the environment variable of the given
+            NAME is set to the indicated value: value of variable. If this
+            variable is already known, it is overwritten. Otherwise
+            it is added to the PAM environment.
+
+NAME=
+
+This function sets the variable to an empty value.
+            It is listed separately to indicate that this is the
+            correct way to achieve such a setting.
+
+NAME
+
+Without an '=' the pam_putenv() function will delete the
+            corresponding variable from the PAM environment.
+
+pam_putenv() operates on a
+      copy of name_value,
+      which means in contrast to putenv(3), the application
+      is responsible to free the data.
+
+ 
+RETURN VALUES
+
+PAM_PERM_DENIED
+
+Argument name_value given is a NULL
+            pointer.
+
+PAM_BAD_ITEM
+
+Variable requested (for deletion) is not currently
+            set.
+
+PAM_ABORT
+
+The pamh
+            handle is corrupt.
+
+PAM_BUF_ERR
+
+Memory buffer error.
+
+PAM_SUCCESS
+
+The environment variable was successfully
+            updated.
+
+ 
+SEE ALSO
+pam_start(3), pam_getenv(3), pam_getenvlist(3),
+      pam_strerror(3), pam(8)
+
+                  See Linux-PAM copyright notice for more information.
+                
+

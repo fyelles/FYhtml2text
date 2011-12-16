@@ -1,0 +1,99 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+wcstoimax, wcstoumax — convert wide-character string
+      to integer
+
+Synopsis
+
+#include <stddef.h>
+#include <inttypes.h>
+
+intmax_t
+            wcstoimax(
+const wchar_t *nptr,
+
+ 
+wchar_t **endptr,
+
+ 
+int base);
+
+           
+        
+
+uintmax_t
+            wcstoumax(
+const wchar_t *nptr,
+
+ 
+wchar_t **endptr,
+
+ 
+int base);
+
+           
+        
+
+ 
+DESCRIPTION
+These functions are just like wcstol(3) and wcstoul(3), except that they
+      return a value of type intmax_t and
+      uintmax_t, respectively.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+imaxabs(3), imaxdiv(3), strtoimax(3), strtoumax(3), wcstol(3), wcstoul(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2003 Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  The GNU General Public License's references to "object code"
+
+                  and "executables" are to be interpreted as the output of any
+
+                  document formatting or typesetting system, including
+
+                  intermediate and printed output.
+
+                  This manual is distributed in the hope that it will be useful,
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+                  GNU General Public License for more details.
+
+                  You should have received a copy of the GNU General Public
+
+                  License along with this manual; if not, write to the Free
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,
+
+                  USA.
+

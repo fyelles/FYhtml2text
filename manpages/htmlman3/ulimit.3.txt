@@ -1,0 +1,125 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+ulimit — get and set user limits
+
+Synopsis
+
+#include <ulimit.h>
+
+long
+            ulimit(
+int cmd,
+
+ 
+long newlimit);
+
+           
+        
+
+ 
+DESCRIPTION
+
+Warning
+
+This routine is obsolete. Use getrlimit(2),
+              setrlimit(2), and
+              sysconf(3) instead.
+              For the shell command ulimit(), see bash(1).
+
+The ulimit() call will get
+      or set some limit for the calling process. The cmd argument can have one of
+      the following values.
+
+UL_GETFSIZE
+
+Return the limit on the size of a file, in units of
+            512 bytes.
+
+UL_SETFSIZE
+
+Set the limit on the size of a file.
+
+3
+
+(Not implemented for Linux.) Return the maximum
+            possible address of the data segment.
+
+4
+
+(Implemented but no symbolic constant provided.)
+            Return the maximum number of files that the calling
+            process can open.
+
+ 
+RETURN VALUE
+On success, ulimit() returns
+      a nonnegative value. On error, −1 is returned, and
+      errno is set appropriately.
+
+ 
+ERRORS
+
+EPERM
+
+A unprivileged process tried to increase a
+            limit.
+
+ 
+CONFORMING TO
+SVr4, POSIX.1-2001. POSIX.1-2008 marks ulimit() as obsolete.
+
+ 
+SEE ALSO
+bash(1), getrlimit(2), setrlimit(2), sysconf(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (C) 1996 Andries Brouwer (aebdocument.write('@');(@)cwi.nl)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  Moved to man3, aeb, 980612
+

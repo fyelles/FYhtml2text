@@ -1,0 +1,200 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+gnutls−serv — GnuTLS test server
+
+ 
+DESCRIPTION
+Simple server program that listens to incoming TLS
+      connections.
+
+ 
+OPTIONS
+
+ 
+Program control options
+
+−d,
+            −−debug LEVEL
+
+Specify the debug level. Default is 1.
+
+−h,
+            −−help
+
+prints this help
+
+−l,
+            −−list
+
+Print a list of the supported algorithms and
+              modes.
+
+−q,
+            −−quiet
+
+Suppress some messages.
+
+−v,
+            −−version
+
+prints the program's version number
+
+ 
+Server options
+
+−p,
+            −−port integer
+
+The port to listen on.
+
+−−nodb
+
+Does not use the resume database.
+
+−−http
+
+Act as an HTTP Server.
+
+−−echo
+
+Act as an Echo Server.
+
+ 
+TLS/SSL control options
+
+−−priority PRIORITY
+            STRING
+
+TLS algorithms and protocols to enable. You can
+              use predefined sets of ciphersuites such as:
+
+PERFORMANCE
+
+all the "secure" ciphersuites are enabled, limited
+              to 128 bit ciphers and sorted by terms of speed
+              performance.
+
+NORMAL
+
+option enables all "secure" ciphersuites. The
+              256-bit ciphers are included as a fallback only. The
+              ciphers are sorted by security margin.
+
+SECURE128
+
+flag enables all "secure" ciphersuites with
+              ciphers up to 128 bits, sorted by security
+              margin.
+
+SECURE256
+
+flag enables all "secure" ciphersuites including
+              the 256 bit ciphers, sorted by security margin.
+
+EXPORT
+
+all the ciphersuites are enabled, including the
+              low-security 40 bit ciphers.
+
+NONE
+
+nothing is enabled. This disables even protocols
+              and compression methods.
+Check the GnuTLS manual on section "Priority
+              strings" for more information on allowed
+              keywords.
+Examples:
+"NORMAL"
+
+              "NONE:+VERS-TLS-ALL:+MAC-ALL:+RSA:+AES-128-CBC:+SIGN-ALL:+COMP-NULL"
+"NORMAL:-ARCFOUR-128" means normal ciphers except
+              for ARCFOUR-128.
+"SECURE:-VERS-SSL3.0:+COMP-DEFLATE" means that
+              only secure ciphers are enabled, SSL3.0 is disabled,
+              and libz compression enabled.
+
+              "NONE:+VERS-TLS-ALL:+AES-128-CBC:+RSA:+SHA1:+COMP-NULL:+SIGN-RSA-SHA1"
+"NORMAL:%COMPAT" is the most compatible mode
+
+−g,
+            −−generate
+
+Generate Diffie-Hellman Parameters.
+
+−−kx kx1
+            kx2...
+
+Key exchange methods to enable (use gnutls−cli
+              −−list to show the supported
+              key exchange methods).
+
+−p,
+            −−port integer
+
+The port to connect to.
+
+ 
+Certificate options
+
+−−pgpcertfile FILE
+
+PGP Public Key (certificate) file to use.
+
+−−pgpkeyfile FILE
+
+PGP Key file to use.
+
+−−pgpkeyring FILE
+
+PGP Key ring file to use.
+
+−−pgptrustdb FILE
+
+PGP trustdb file to use.
+
+−−srppasswd FILE
+
+SRP password file to use.
+
+−−srppasswdconf FILE
+
+SRP password configuration file to use.
+
+−−x509cafile FILE
+
+Certificate file to use.
+
+−−x509certfile FILE
+
+X.509 Certificate file to use.
+
+−−x509fmtder
+
+Use DER format for certificates
+
+−−x509keyfile FILE
+
+X.509 key file to use.
+
+ 
+SEE ALSO
+gnutls-cli(1), gnutls-cli-debug(1)
+
+ 
+AUTHOR
+Nikos Mavrogiannopoulos <nmav@gnutls.org> and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.
+This manual page was written by Ivo Timmermans
+      <ivo@debian.org>, for the Debian GNU/Linux system (but
+      may be used by others).
+

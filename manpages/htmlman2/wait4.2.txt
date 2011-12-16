@@ -1,0 +1,181 @@
+
+
+Linux
+          manual pages
+Section 2
+ 
+
+ 
+ 
+
+Name
+wait3, wait4 — wait for process to change state, BSD
+      style
+
+Synopsis
+
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/resource.h>
+#include <sys/wait.h>
+
+pid_t
+            wait3(
+int *status,
+
+ 
+int options,
+
+ 
+struct rusage *rusage);
+
+           
+        
+
+pid_t
+            wait4(
+pid_t pid,
+
+ 
+int *status,
+
+ 
+int options,
+
+ 
+struct rusage *rusage);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+wait3():
+
+_BSD_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 500 || _XOPEN_SOURCE &&
+                      _XOPEN_SOURCE_EXTENDED
+
+wait4():
+
+_BSD_SOURCE
+
+ 
+DESCRIPTION
+The wait3() and wait4() system calls are similar to
+      waitpid(2), but
+      additionally return resource usage information about the
+      child in the structure pointed to by rusage.
+Other than the use of the rusage argument, the following
+      wait3() call:
+
+    wait3(status, options, rusage);
+
+is equivalent to:
+
+    waitpid(−1, status, options);
+
+Similarly, the following wait4() call:
+
+    wait4(pid, status, options, rusage);
+
+is equivalent to:
+
+    waitpid(pid, status, options);
+
+In other words, wait3()
+      waits of any child, while wait4() can be used to select a specific
+      child, or children, on which to wait. See wait(2) for further
+      details.
+If rusage is not
+      NULL, the struct
+      rusage to which it points will be filled with
+      accounting information about the child. See getrusage(2) for
+      details.
+
+ 
+RETURN VALUE
+As for waitpid(2).
+
+ 
+ERRORS
+As for waitpid(2).
+
+ 
+CONFORMING TO
+4.3BSD.
+
+ 
+NOTES
+Including <sys/time.h>
+      is not required these days, but increases portability.
+      (Indeed, <sys/resource.h> defines the rusage structure with fields of
+      type struct timeval
+      defined in <sys/time.h>
+On Linux, wait3() is a
+      library function implemented on top of the wait4() system call.
+
+ 
+SEE ALSO
+fork(2), getrusage(2), sigaction(2), signal(2), wait(2), signal(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                  Copyright (c) 1993 by Thomas Koenig (ig25document.write('@');(@)rz.uni-karlsruhe.de)
+
+                  and Copyright (c) 2004 by Michael Kerrisk (mtk.manpagesdocument.write('@');(@)gmail.com)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  License.
+
+                  Modified Sat Jul 24 13:32:44 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
+                  Modified Mon Jun 23 14:09:52 1997 by aeb - add EINTR.
+
+                  Modified Tue Jul  7 12:26:42 1998 by aeb - changed return value wait3
+
+                  Modified 2004-11-11, Michael Kerrisk <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Rewrote much of this page, and removed much duplicated text,
+
+                  replacing with pointers to wait.2
+

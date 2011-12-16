@@ -1,0 +1,70 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+iconv_close — deallocate descriptor for character
+      set conversion
+
+Synopsis
+
+#include <iconv.h>
+
+int
+            iconv_close(
+iconv_t cd);
+
+           
+        
+
+ 
+DESCRIPTION
+The iconv_close() function
+      deallocates a conversion descriptor cd previously allocated using
+      iconv_open(3).
+
+ 
+RETURN VALUE
+When successful, the iconv_close() function returns 0. In case
+      of error, it sets errno and
+      returns −1.
+
+ 
+VERSIONS
+This function is available in glibc since version 2.1.
+
+ 
+CONFORMING TO
+UNIX98, POSIX.1-2001.
+
+ 
+SEE ALSO
+iconv(3), iconv_open(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) Bruno Haible <haibledocument.write('@');(@)clisp.cons.org>
+
+                  This is free documentation; you can redistribute it and/or
+
+                  modify it under the terms of the GNU General Public License as
+
+                  published by the Free Software Foundation; either version 2 of
+
+                  the License, or (at your option) any later version.
+
+                  References consulted:
+                    GNU glibc-2 source code and manual
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html
+

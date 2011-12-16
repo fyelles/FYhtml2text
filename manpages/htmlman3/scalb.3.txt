@@ -1,0 +1,191 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+scalb, scalbf, scalbl — multiply floating-point
+      number by integral power of radix (OBSOLETE)
+
+Synopsis
+
+#include <math.h>
+
+double
+            scalb(
+double x,
+
+ 
+double exp);
+
+           
+        
+
+float
+            scalbf(
+float x,
+
+ 
+double exp);
+
+           
+        
+
+long double
+            scalbl(
+long double x,
+
+ 
+double exp);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+scalb():
+
+_BSD_SOURCE ||
+                      _SVID_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 500 || _XOPEN_SOURCE &&
+                      _XOPEN_SOURCE_EXTENDED
+
+scalbf(), scalbl():
+
+_BSD_SOURCE ||
+                      _SVID_SOURCE ||
+                      _XOPEN_SOURCE
+                      >= 600
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+These functions multiply their first argument x by FLT_RADIX (probably 2) to the power of
+      exp, that is:
+
+    x * FLT_RADIX ** exp
+
+The definition of FLT_RADIX
+      can be obtained by including <float.h>
+
+ 
+RETURN VALUE
+On success, these functions return x * FLT_RADIX ** exp.
+If x or exp is a NaN, a NaN is
+      returned.
+If x is positive
+      infinity (negative infinity), and exp is not negative infinity,
+      positive infinity (negative infinity) is returned.
+If x is +0
+      (−0), and exp
+      is not positive infinity, +0 (−0) is returned.
+If x is zero, and
+      exp is positive
+      infinity, a domain error occurs, and a NaN is returned.
+If x is an
+      infinity, and exp is
+      negative infinity, a domain error occurs, and a NaN is
+      returned.
+If the result overflows, a range error occurs, and the
+      functions return HUGE_VAL,
+      HUGE_VALF, or HUGE_VALL, respectively, with a sign the
+      same as x.
+If the result underflows, a range error occurs, and the
+      functions return zero, with a sign the same as x.
+
+ 
+ERRORS
+See math_error(7) for
+      information on how to determine whether an error has occurred
+      when calling these functions.
+The following errors can occur:
+
+Domain error: x is 0, and exp is positive infinity,
+          or x is positive
+          infinity and exp
+          is negative infinity and the other argument is not a
+          NaN
+
+An invalid floating-point exception (FE_INVALID) is raised.
+
+Range error, overflow
+
+An overflow floating-point exception (FE_OVERFLOW) is raised.
+
+Range error, underflow
+
+An underflow floating-point exception (FE_UNDERFLOW) is raised.
+
+These functions do not set errno.
+
+ 
+CONFORMING TO
+scalb() is specified in
+      POSIX.1-2001, but marked obsolescent. POSIX.1-2008 removes
+      the specification of scalb(),
+      recommending the use of scalbln(3), scalblnf(3), or scalblnl(3) instead. The
+      scalb() function is from
+      4.3BSD.
+scalbf() and scalbl() are unstandardized; scalbf() is nevertheless present on several
+      other systems
+
+ 
+SEE ALSO
+ldexp(3), scalbln(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2004 Andries Brouwer <aebdocument.write('@');(@)cwi.nl>.
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk
+
+                      <mtk.manpagesdocument.write('@');(@)gmail.com>
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+

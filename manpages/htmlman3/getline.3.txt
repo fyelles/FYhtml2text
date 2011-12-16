@@ -1,0 +1,198 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+getline, getdelim — delimited string input
+
+Synopsis
+
+#include <stdio.h>
+
+ssize_t
+            getline(
+char **lineptr,
+
+ 
+size_t *n,
+
+ 
+FILE *stream);
+
+           
+        
+
+ssize_t
+            getdelim(
+char **lineptr,
+
+ 
+size_t *n,
+
+ 
+int delim,
+
+ 
+FILE *stream);
+
+           
+        
+
+Note
+
+Feature Test Macro Requirements
+                      for glibc (see feature_test_macros(7)):
+
+getline(), getdelim():
+
+Since
+                      glibc 2.10:
+
+_POSIX_C_SOURCE
+                      >= 200809L || _XOPEN_SOURCE >=
+                      700
+
+Before
+                      glibc 2.10:
+
+_GNU_SOURCE
+
+ 
+DESCRIPTION
+getline() reads an entire
+      line from stream,
+      storing the address of the buffer containing the text into
+      *lineptr. The buffer
+      is null-terminated and includes the newline character, if one
+      was found.
+If *lineptr is
+      NULL, then getline() will
+      allocate a buffer for storing the line, which should be freed
+      by the user program. (In this case, the value in *n is ignored.)
+Alternatively, before calling getline(), *lineptr can contain a pointer
+      to a malloc(3)\-allocated buffer
+      *n bytes in size. If
+      the buffer is not large enough to hold the line, getline() resizes it with realloc(3), updating
+      *lineptr and
+      *n as necessary.
+In either case, on a successful call, *lineptr and *n will be updated to reflect
+      the buffer address and allocated size respectively.
+getdelim() works like
+      getline(), except that a line
+      delimiter other than newline can be specified as the
+      delimiter argument. As with
+      getline(), a delimiter
+      character is not added if one was not present in the input
+      before end of file was reached.
+
+ 
+RETURN VALUE
+On success, getline() and
+      getdelim() return the number of
+      characters read, including the delimiter character, but not
+      including the terminating null byte. This value can be used
+      to handle embedded null bytes in the line read.
+Both functions return −1 on failure to read a line
+      (including end-of-file condition).
+
+ 
+ERRORS
+
+EINVAL
+
+Bad arguments (n or lineptr is NULL, or
+            stream is not
+            valid).
+
+ 
+VERSIONS
+These functions are available since libc 4.6.27.
+
+ 
+CONFORMING TO
+Both getline() and
+      getdelim() were originally GNU
+      extensions. They were standardized in POSIX.1-2008.
+
+ 
+EXAMPLE
+
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
+int
+main(void)
+{
+    FILE *fp;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+
+    fp = fopen("/etc/motd", "r");
+    if (fp == NULL)
+        exit(EXIT_FAILURE);
+
+    while ((read = getline(&line, &len, fp)) != −1) {
+        printf("Retrieved line of length %zu :\n", read);
+        printf("%s", line);
+    }
+
+    free(line);
+    exit(EXIT_SUCCESS);
+}
+
+ 
+SEE ALSO
+read(2), fgets(3), fopen(3), fread(3), gets(3), scanf(3)
+
+ 
+COLOPHON
+This page is part of release 3.35 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright (c) 2001 John Levon <mozdocument.write('@');(@)compsoc.man.ac.uk>
+
+                  Based in part on GNU libc documentation
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  License.
+

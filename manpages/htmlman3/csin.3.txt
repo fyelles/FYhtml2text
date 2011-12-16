@@ -1,0 +1,71 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+csin, csinf, csinl — complex sine function
+
+Synopsis
+
+#include <complex.h>
+
+double complex
+            csin(
+double complex z);
+
+           
+        
+
+float complex
+            csinf(
+float complex z);
+
+           
+        
+
+long double complex
+            csinl(
+long double complex z);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The complex sine function is defined as:
+
+    csin(z) = (exp(i * z) − exp(−i * z)) / (2 * i)
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+cabs(3), casin(3), ccos(3), ctan(3), complex(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

@@ -1,0 +1,42 @@
+
+
+Linux
+          manual pages
+Section 1
+ 
+
+ 
+ 
+
+Name
+setsid — run a program in a new session
+
+Synopsis
+
+setsid program [ arg...
+        ]
+
+ 
+DESCRIPTION
+setsid runs
+      a program in a new session.
+
+ 
+SEE ALSO
+setsid(2)
+
+ 
+AUTHOR
+Rick Sladkey <jrs@world.std.com>
+
+ 
+AVAILABILITY
+The setsid command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.
+
+                    Rick Sladkey <jrsdocument.write('@');(@)world.std.com>
+
+                  In the public domain.
+                  Path modifications by faithdocument.write('@');(@)cs.unc.edu
+

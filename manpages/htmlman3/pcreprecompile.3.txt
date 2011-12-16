@@ -1,0 +1,140 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+PCRE — Perl-compatible regular expressions
+
+ 
+SAVING AND RE-USING PRECOMPILED PCRE PATTERNS
+If you are running an application that uses a large number
+      of regular expression patterns, it may be useful to store
+      them in a precompiled form instead of having to compile them
+      every time the application is run. If you are not using any
+      private character tables (see the pcre_maketables()(3)
+      documentation), this is relatively straightforward. If you
+      are using private tables, it is a little bit more
+      complicated.
+If you save compiled patterns to a file, you can copy them
+      to a different host and run them there. This works even if
+      the new host has the opposite endianness to the one on which
+      the patterns were compiled. There may be a small performance
+      penalty, but it should be insignificant. However, compiling
+      regular expressions with one version of PCRE for use with a
+      different version is not guaranteed to work and may cause
+      crashes.
+
+ 
+SAVING A COMPILED PATTERN
+The value returned by pcre_compile() points to a single block of
+      memory that holds the compiled pattern and associated data.
+      You can find the length of this block in bytes by calling
+      pcre_fullinfo() with an
+      argument of PCRE_INFO_SIZE. You can then save the data in any
+      appropriate manner. Here is sample code that compiles a
+      pattern and writes it to a file. It assumes that the variable
+      fd refers to a file that is open
+      for output:
+
+ int erroroffset, rc, size;
+ char *error;
+ pcre *re;
+
+ re = pcre_compile("my pattern", 0, &error, &erroroffset, NULL);
+ if (re == NULL) { ... handle errors ... }
+ rc = pcre_fullinfo(re, NULL, PCRE_INFO_SIZE, &size);
+ if (rc < 0) { ... handle errors ... }
+ rc = fwrite(re, 1, size, fd);
+ if (rc != size) { ... handle errors ... }
+
+In this example, the bytes that comprise the compiled
+      pattern are copied exactly. Note that this is binary data
+      that may contain any of the 256 possible byte values. On
+      systems that make a distinction between binary and non-binary
+      data, be sure that the file is opened for binary output.
+If you want to write more than one pattern to a file, you
+      will have to devise a way of separating them. For binary
+      data, preceding each pattern with its length is probably the
+      most straightforward approach. Another possibility is to
+      write out the data in hexadecimal instead of binary, one
+      pattern to a line.
+Saving compiled patterns in a file is only one possible
+      way of storing them for later use. They could equally well be
+      saved in a database, or in the memory of some daemon process
+      that passes them via sockets to the processes that want
+      them.
+If the pattern has been studied, it is also possible to
+      save the study data in a similar way to the compiled pattern
+      itself. When studying generates additional information,
+      pcre_study() returns a pointer
+      to a pcre_extra data block. Its
+      format is defined in the section on matching a pattern in the
+      pcreapi(3) documentation.
+      The study_data field points to
+      the binary study data, and this is what you must save (not
+      the pcre_extra block itself).
+      The length of the study data can be obtained by calling
+      pcre_fullinfo() with an
+      argument of PCRE_INFO_STUDYSIZE. Remember to check that
+      pcre_study() did return a
+      non-NULL value before trying to save the study data.
+
+ 
+RE-USING A PRECOMPILED PATTERN
+Re-using a precompiled pattern is straightforward. Having
+      reloaded it into main memory, you pass its pointer to
+      pcre_exec() or pcre_dfa_exec() in the usual way. This
+      should work even on another host, and even if that host has
+      the opposite endianness to the one where the pattern was
+      compiled.
+However, if you passed a pointer to custom character
+      tables when the pattern was compiled (the tableptr argument of
+      pcre_compile()), you must now
+      pass a similar pointer to pcre_exec() or pcre_dfa_exec(), because the value saved
+      with the compiled pattern will obviously be nonsense. A field
+      in a pcre_extra() block is used
+      to pass this data, as described in the section on matching a
+      pattern in the pcreapi(3)
+      documentation.
+If you did not provide custom character tables when the
+      pattern was compiled, the pointer in the compiled pattern is
+      NULL, which causes pcre_exec()
+      to use PCRE's internal tables. Thus, you do not need to take
+      any special action at run time in this case.
+If you saved study data with the compiled pattern, you
+      need to create your own pcre_extra data block and set the
+      study_data field to point to the
+      reloaded study data. You must also set the
+      PCRE_EXTRA_STUDY_DATA bit in the flags field to indicate that study data is
+      present. Then pass the pcre_extra block to pcre_exec() or pcre_dfa_exec() in the usual way.
+
+ 
+COMPATIBILITY WITH DIFFERENT PCRE RELEASES
+In general, it is safest to recompile all saved patterns
+      when you update to a new PCRE release, though not all updates
+      actually require this.
+
+ 
+AUTHOR
+
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+
+ 
+REVISION
+
+Last updated: 17 November 2010
+Copyright (c) 1997-2010 University of Cambridge.
+
+COPYRIGHT
+
+This manual page is taken from the PCRE library, which is distributed under
+                the BSD license.
+

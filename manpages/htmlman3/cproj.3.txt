@@ -1,0 +1,80 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+cproj, cprojf, cprojl — project into Riemann
+      Sphere
+
+Synopsis
+
+#include <complex.h>
+
+double complex
+            cproj(
+double complex z);
+
+           
+        
+
+float complex
+            cprojf(
+float complex z);
+
+           
+        
+
+long double complex
+            cprojl(
+long double complex z);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+This function projects a point in the plane onto the
+      surface of a Riemann Sphere, the one-point compactification
+      of the complex plane. Each finite point z projects to z itself. Every complex
+      infinite value is projected to a single infinite value,
+      namely to positive infinity on the real axis.
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+NOTES
+In glibc 2.11 and earlier, the implementation does
+      something different (a stereographic projection onto a Riemann
+      Sphere).
+
+ 
+SEE ALSO
+cabs(3), complex(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

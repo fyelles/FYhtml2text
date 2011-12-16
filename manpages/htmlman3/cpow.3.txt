@@ -1,0 +1,81 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+cpow, cpowf, cpowl — complex power function
+
+Synopsis
+
+#include <complex.h>
+
+double complex
+            cpow(
+double complex x,
+
+ 
+complex double z);
+
+           
+        
+
+float complex
+            cpowf(
+float complex x,
+
+ 
+complex float z);
+
+           
+        
+
+long double complex
+            cpowl(
+long double complex x,
+
+ 
+complex long double z);
+
+           
+        
+
+Note
+
+Link with −lm.
+
+ 
+DESCRIPTION
+The function calculates x raised to the power
+      z. (With a branch cut
+      for x along the
+      negative real axis.)
+
+ 
+VERSIONS
+These functions first appeared in glibc in version
+      2.1.
+
+ 
+CONFORMING TO
+C99.
+
+ 
+SEE ALSO
+cabs(3), pow(3), complex(7)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 2002 Walter Harms (walter.harmsdocument.write('@');(@)informatik.uni-oldenburg.de)
+
+                  Distributed under GPL
+

@@ -1,0 +1,104 @@
+
+
+Linux
+          manual pages
+Section 3
+ 
+
+ 
+ 
+
+Name
+difftime — calculate time difference
+
+Synopsis
+
+#include <time.h>
+
+double
+            difftime(
+time_t time1,
+
+ 
+time_t time0);
+
+           
+        
+
+ 
+DESCRIPTION
+The difftime() function
+      returns the number of seconds elapsed between time time1 and time time0, represented as a
+      double. Each of the times is
+      specified in calendar time, which means its value is a
+      measurement (in seconds) relative to the Epoch, 1970-01-01
+      00:00:00 +0000 (UTC).
+
+ 
+CONFORMING TO
+SVr4, 4.3BSD, C89, C99.
+
+ 
+NOTES
+On a POSIX system, time_t is an
+      arithmetic type, and one could just define
+
+#define difftime(t1,t0) (double)(t1 − t0)
+
+when the possible overflow in the subtraction is not a
+      concern. On other systems, the data type time_t might use some other encoding where
+      subtraction doesn't work directly.
+
+ 
+SEE ALSO
+date(1), gettimeofday(2), time(2), ctime(3), gmtime(3), localtime(3)
+
+ 
+COLOPHON
+This page is part of release 3.33 of the Linux man-pages project. A
+      description of the project, and information about reporting
+      bugs, can be found at http://man7.org/linux/man-pages/.
+
+                    Copyright 1993 David Metcalfe (daviddocument.write('@');(@)prism.demon.co.uk)
+
+                  Permission is granted to make and distribute verbatim copies of this
+
+                  manual provided the copyright notice and this permission notice are
+
+                  preserved on all copies.
+
+                  Permission is granted to copy and distribute modified versions of this
+
+                  manual under the conditions for verbatim copying, provided that the
+
+                  entire resulting derived work is distributed under the terms of a
+
+                  permission notice identical to this one.
+
+                  Since the Linux kernel and libraries are constantly changing, this
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no
+
+                  responsibility for errors or omissions, or for damages resulting from
+
+                  the use of the information contained herein.  The author(s) may not
+
+                  have taken the same level of care in the production of this manual,
+
+                  which is licensed free of charge, as they might when working
+
+                  professionally.
+
+                  Formatted or processed versions of this manual, if unaccompanied by
+
+                  the source, must acknowledge the copyright and authors of this work.
+
+                  References consulted:
+                      Linux libc source code
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly & Associates, 1991)
+
+                      386BSD man pages
+
+                  Modified Sat Jul 24 19:48:17 1993 by Rik Faith (faithdocument.write('@');(@)cs.unc.edu)
+
