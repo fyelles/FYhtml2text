@@ -1,5 +1,6 @@
-
 .DS_Store
 Darwin
 manpages
 *.gz
+
+dbs/manpage.sqlite 2
